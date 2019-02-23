@@ -1,0 +1,36 @@
+{
+  "name": "klerde",
+  "version": "0.0.0",
+  "description": "",
+  "author": "rwev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rwev/klerde/issues"
+  },
+  "homepage": "https://github.com/rwev/klerde#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwev/klerde.git"
+  },
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "leaflet": "^1.4.0",
+    "leaflet-openweathermap": "^1.0.0",
+    "leaflet.nontiledlayer": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.4.3",
+    "node-sass": "^4.11.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-scss": "node-sass src/ -o dist/",
+    "compile-ts": "webpack",
+    "build": "npm run compile-scss & npm run compile-ts"
+  }
+}
