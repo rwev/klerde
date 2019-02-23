@@ -8,6 +8,10 @@
     "allowJs": true,
     "sourceMap": true,
     "outDir": "dist/",
+    "lib": [ 
+      "es2016",
+      "dom"
+     ]
   },
   "include": [
     "src/**/*"

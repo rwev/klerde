@@ -2,7 +2,7 @@ import * as L from 'leaflet';
 import { MAP_OPTIONS, LAYERS_OPTIONS, SCALE_OPTIONS, ZOOM_OPTIONS } from './options/options';
 import { OVERLAY_LAYERS } from './layers/overlay';
 import { DEFAULT_BASE_LAYER } from './layers/base';
-import { onMapDoubleClick, onMapChange } from './handlers/handlers';
+import { onMapDoubleClick, onMapChange } from './functions/handlers';
 
 var map: L.Map = L.map('map', MAP_OPTIONS).setView([ 51.505, -0.09 ], 13);
 
