@@ -1,6 +1,7 @@
 import * as L from 'leaflet';
 import { WaypointIcon, WaypointConfirmIcon, WaypointDeleteIcon } from '../items/icons';
 import { fetchElevation } from './requests';
+import { addWaypointToRoute, removeWaypointFromRoute } from './route';
 
 export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 	let waypoint: L.Marker = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointIcon(e.latlng) }).addTo(this);
@@ -21,8 +22,7 @@ export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 				waypoint = L.marker([ e.latlng.lat, e.latlng.lng ], {
 					icon: new WaypointIcon(e.latlng, elevation, true)
 				}).addTo(this);
-				this.addWaypointToRoute(waypoint);
-				this.drawRoute();
+				addWaypointToRoute(this, waypoint);
 			});
 
 		waypointDelete = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointDeleteIcon() })
@@ -31,7 +31,7 @@ export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 				waypoint.remove();
 				waypointConfirm.remove();
 				waypointDelete.remove();
-				this.removeWaypointFromRoute(waypoint);
+				removeWaypointFromRoute(this, waypoint);
 			});
 	});
 }

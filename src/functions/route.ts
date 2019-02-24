@@ -1,24 +1,27 @@
 import * as L from 'leaflet';
 import { POLYLINE_OPTIONS } from "../options/options";
 
-export function addWaypointToRoute(waypoint: L.Marker) {
-	this.waypointLatLngs.push(waypoint.getLatLng());
-	this.drawRoute();
+let routePolyline: L.Polyline = null;
+let waypointLatLngs: L.LatLng[] = [];
+
+export function addWaypointToRoute(map: L.Map, waypoint: L.Marker) {
+	waypointLatLngs.push(waypoint.getLatLng());
+	drawRoute(map);
 }
-export function removeWaypointFromRoute(waypoint: L.Marker) {
-	let waypointLatLngIndex: number = this.waypointLatLngs.findIndex((latlng: L.LatLng) =>
+export function removeWaypointFromRoute(map: L.Map, waypoint: L.Marker) {
+	let waypointLatLngIndex: number = waypointLatLngs.findIndex((latlng: L.LatLng) =>
 		latlng.equals(waypoint.getLatLng())
 	);
 	if (waypointLatLngIndex) {
-		this.waypointLatLngs.splice(waypointLatLngIndex, 1);
-		this.drawRoute();
+		waypointLatLngs.splice(waypointLatLngIndex, 1);
+		drawRoute(map);
 	}
 }
-export function drawRoute() {
-	if (this.routePolyline) {
-		this.routePolyline.remove();
+function drawRoute(map: L.Map) {
+	if (routePolyline) {
+		routePolyline.remove();
 	}
-	if (this.waypointLatLngs.length > 1) {
-		this.routePolyline = L.polyline(this.waypointLatLngs, POLYLINE_OPTIONS).addTo(this.map);
+	if (waypointLatLngs.length > 1) {
+		routePolyline = L.polyline(waypointLatLngs, POLYLINE_OPTIONS).addTo(map);
 	}
 }
