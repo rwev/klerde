@@ -2,6 +2,7 @@ import * as L from 'leaflet';
 import { WaypointIcon, WaypointConfirmIcon, WaypointDeleteIcon } from '../items/icons';
 import { fetchElevation } from './requests';
 import { addWaypointToRoute, removeWaypointFromRoute } from './route';
+import { updateViewSummary } from '../components/view-summary';
 
 export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 	let waypoint: L.Marker = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointIcon(e.latlng) }).addTo(this);
@@ -37,6 +38,5 @@ export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 }
 
 export function onMapChange(e: L.LeafletEvent) {
-	let center: L.LatLng = this.getCenter();
-	let bounds: L.LatLngBounds = this.getBounds();
+	updateViewSummary(this);
 }

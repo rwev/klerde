@@ -1,11 +1,7 @@
 import * as L from 'leaflet';
+import { formatNumber } from '../util/format';
 
-function formatNumber(x: number): string {
-	return x.toLocaleString('en-US', {
-		minimumFractionDigits: 3,
-		maximumFractionDigits: 3
-	});
-}
+
 
 const WaypointIconOptions: L.DivIconOptions = {
 	className: 'waypoint-icon',

@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>Klerde</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <title>Klerde</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 
-</head>
-
-<body>
-    <div id="map"></div>
-</body>
-<script src="dist/klerde.js"></script>
-<link rel="stylesheet" href="dist/styles.css" />
+    <body>
+        <div id="map"></div>
+        <div id="center">&times;</div>
+        <div id="view-summary">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Latitude</td>
+                        <td id="latitude-view"></td>
+                    </tr>
+                    <tr>
+                        <td>Longitude</td>
+                        <td id="longitude-view"></td>
+                    </tr>
+                    <tr>
+                        <td>Elevation</td>
+                        <td id="elevation-view"></td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td>Northern Bound</td>
+                        <td id="northern-bound-view"></td>
+                    </tr>
+                    <tr>
+                        <td>Southern Bound</td>
+                        <td id="southern-bound-view"></td>
+                    </tr>
+                    <tr>
+                        <td>Eastern Bound</td>
+                        <td id="eastern-bound-view"></td>
+                    </tr>
+                    <tr>
+                        <td>Western Bound</td>
+                        <td id="western-bound-view"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script src="dist/klerde.js"></script>
+    <link rel="stylesheet" href="dist/styles.css" />
 
 </html>
