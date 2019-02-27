@@ -4,7 +4,8 @@ import { OVERLAY_LAYERS } from './layers/overlay';
 import { DEFAULT_BASE_LAYER } from './layers/base';
 import { onMapDoubleClick, onMapChange } from './functions/handlers';
 
-var map: L.Map = L.map('map', MAP_OPTIONS).setView([ 51.505, -0.09 ], 13);
+var map: L.Map = L.map('map', MAP_OPTIONS);
+document.onreadystatechange = () => map.invalidateSize();
 
 L.control
 	.layers(
@@ -17,13 +18,14 @@ DEFAULT_BASE_LAYER.addTo(map);
 
 L.control.scale(SCALE_OPTIONS).addTo(map);
 map.zoomControl.remove(); // remove the default
-L.control.zoom(ZOOM_OPTIONS).addTo(map);
+L.control.zoom(ZOOM_OPTIONS).addTo(map); 
 
 
-map.setView(new L.LatLng(43.616667, -116.2), 12); // Boise, ID
-navigator.geolocation.getCurrentPosition((position: Position) => {
-	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), 12);
-});
+// map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
+map.setView(new L.LatLng(40, -98), 5); // Whole US 
+// navigator.geolocation.getCurrentPosition((position: Position) => {
+// 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
+// });
 
 map.on('dblclick', onMapDoubleClick, map);
 map.on('resize', onMapChange, map);
@@ -49,5 +51,5 @@ function processCoordinateEntry() {
 }
 
 function goToCoords() {
-    map.setView(new L.LatLng(+latInput.value, +lngInput.value), 12)
+	map.setView(new L.LatLng(+latInput.value, +lngInput.value), map.getZoom());
 }
