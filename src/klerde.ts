@@ -1,16 +1,17 @@
 import * as L from 'leaflet';
 import { MAP_OPTIONS, LAYERS_OPTIONS, SCALE_OPTIONS, ZOOM_OPTIONS } from './options/options';
 import { OVERLAY_LAYERS } from './layers/overlay';
-import { DEFAULT_BASE_LAYER } from './layers/base';
+import { DEFAULT_BASE_LAYER, ALL_BASE_LAYERS } from './layers/base';
 import { onMapDoubleClick, onMapChange } from './functions/handlers';
+import { generateTimeLayers, ANIMATED_LAYER_OPACITY } from './layers/animated';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
 document.onreadystatechange = () => map.invalidateSize();
 
 L.control
 	.layers(
-		{}, // ALL_BASE_LAYERS,
-		OVERLAY_LAYERS,
+		{}, // ALL_BASE_LAYERS
+		{}, // OVERLAY_LAYERS // generateTimeLayers(),
 		LAYERS_OPTIONS
 	)
 	.addTo(map);
@@ -53,3 +54,23 @@ function processCoordinateEntry() {
 function goToCoords() {
 	map.setView(new L.LatLng(+latInput.value, +lngInput.value), map.getZoom());
 }
+
+let timeLayers = generateTimeLayers();
+timeLayers.forEach((layer: L.TileLayer) => layer.addTo(map));
+const timeLayerCount = timeLayers.length;
+let timeLayerIndex = 0; 
+
+function timeLayerTransitionTimer() {
+	setTimeout(() => {
+
+		timeLayers[timeLayerIndex].setOpacity(0);
+
+		timeLayerIndex++;
+		if (timeLayerIndex > (timeLayerCount - 1)) { timeLayerIndex = 0; }
+		timeLayers[timeLayerIndex].setOpacity(ANIMATED_LAYER_OPACITY);
+		
+		timeLayerTransitionTimer();
+
+	}, 333)
+}
+timeLayerTransitionTimer();

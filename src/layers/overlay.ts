@@ -21,7 +21,7 @@ import 'leaflet.nontiledlayer';
 // const temperature: L.OWM.Temperature = L.OWM.temperature(DEFAULT_OWM_OPTIONS);
 // const wind: L.OWM.Wind = L.OWM.wind(DEFAULT_OWM_OPTIONS);
 
-let NOAA: L.NonTiledLayer = L.nonTiledLayer.wms(
+export const NOAA: L.NonTiledLayer = L.nonTiledLayer.wms(
 	'https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Observations/radar_base_reflectivity/MapServer/WmsServer',
 	{
 		layers: '1',
@@ -31,8 +31,10 @@ let NOAA: L.NonTiledLayer = L.nonTiledLayer.wms(
 	}
 );
 
-let Nexrad: L.TileLayer = L.tileLayer.wms('https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0q.cgi', {
-	layers: 'nexrad-n0q-900913',
+export const NEXRAD_URL = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0q.cgi';
+export const NEXRAD_LAYER = 'nexrad-n0q-900913'; 
+export const Nexrad: L.TileLayer = L.tileLayer.wms(NEXRAD_URL, {
+	layers: NEXRAD_LAYER,
 	format: 'image/png',
 	transparent: true,
 	opacity: 0.575

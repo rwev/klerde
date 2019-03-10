@@ -39,4 +39,4 @@ export const ALL_BASE_LAYERS =
 
 }
 
-export const DEFAULT_BASE_LAYER = usgsTopo;
+export const DEFAULT_BASE_LAYER = osmStandard // usgsTopo;
