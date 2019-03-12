@@ -10,6 +10,22 @@
     <body>
         <div id="map"></div>
         <div id="center">&times;</div>
+        <div id="nexrad-animate">
+            <input 
+                id="nexrad-animation-toggle" 
+                type="checkbox">
+            <span>Animate</span>
+            <span id="nexrad-animation-play-pause">= &#9650; </span>
+            <span id="nexrad-animation-timestamp"></span>
+            <div class="nexrad-animation-time-slider-container">
+                <input 
+                    type="range"
+                    min="1"
+                    max="100"
+                    value="50"
+                    id="nexrad-animation-time-slider">
+            </div>
+        </div>
         <div id="go-to-coords">
             <input 
                 id="latitude-input" 

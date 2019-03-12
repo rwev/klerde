@@ -40,7 +40,7 @@ export const Nexrad: L.TileLayer = L.tileLayer.wms(NEXRAD_URL, {
 	opacity: 0.575
 });
 
-export const OVERLAY_LAYERS = {
+export const OVERLAY_LAYERS: {[layerName: string]: L.TileLayer | L.NonTiledLayer} = {
 	Nexrad,
 	NOAA
 	// 'Clouds': clouds,

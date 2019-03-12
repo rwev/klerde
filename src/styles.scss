@@ -20,6 +20,18 @@ div#map {
 	margin: 0 auto;
 }
 
+div#nexrad-animate {
+	z-index: 400;
+	position: absolute;
+	left: 100px;
+	top: 16px;
+	width: 120px;
+
+	> .nexrad-animate-play-pause {
+		transform: rotate(90deg);
+	}
+}
+
 div#view-summary {
 	z-index: 400;
 	position: absolute;
@@ -98,6 +110,9 @@ div#center {
 			> .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
 				border: none;
 				background: none;
+				> .leaflet-control-layers-scrollbar {
+					overflow: hidden;
+				}
 			}
 		}
 	}

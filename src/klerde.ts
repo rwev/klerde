@@ -10,8 +10,8 @@ document.onreadystatechange = () => map.invalidateSize();
 
 L.control
 	.layers(
-		{}, // ALL_BASE_LAYERS
-		{}, // OVERLAY_LAYERS // generateTimeLayers(),
+		ALL_BASE_LAYERS, // {}
+		OVERLAY_LAYERS, // {} // generateTimeLayers(),
 		LAYERS_OPTIONS
 	)
 	.addTo(map);
@@ -19,11 +19,10 @@ DEFAULT_BASE_LAYER.addTo(map);
 
 L.control.scale(SCALE_OPTIONS).addTo(map);
 map.zoomControl.remove(); // remove the default
-L.control.zoom(ZOOM_OPTIONS).addTo(map); 
-
+L.control.zoom(ZOOM_OPTIONS).addTo(map);
 
 // map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
-map.setView(new L.LatLng(40, -98), 5); // Whole US 
+map.setView(new L.LatLng(40, -98), 5); // Whole US
 // navigator.geolocation.getCurrentPosition((position: Position) => {
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
@@ -32,7 +31,6 @@ map.on('dblclick', onMapDoubleClick, map);
 map.on('resize', onMapChange, map);
 map.on('zoomanim', onMapChange, map);
 map.on('dragend', onMapChange, map);
-
 
 let latInput: HTMLInputElement = document.getElementById('latitude-input') as HTMLInputElement;
 let lngInput: HTMLInputElement = document.getElementById('longitude-input') as HTMLInputElement;
@@ -55,22 +53,36 @@ function goToCoords() {
 	map.setView(new L.LatLng(+latInput.value, +lngInput.value), map.getZoom());
 }
 
-let timeLayers = generateTimeLayers();
-timeLayers.forEach((layer: L.TileLayer) => layer.addTo(map));
-const timeLayerCount = timeLayers.length;
-let timeLayerIndex = 0; 
+let animateInput: HTMLInputElement = document.getElementById('nexrad-animation-toggle') as HTMLInputElement;
+animateInput.onclick = toggleWeatherAnimation;
 
-function timeLayerTransitionTimer() {
-	setTimeout(() => {
+function toggleWeatherAnimation() {
+	if (animateInput.checked) {
+		for (let layerName in OVERLAY_LAYERS) {
+			const layer = OVERLAY_LAYERS[layerName];
+			layer.removeFrom(map);
+		}
 
-		timeLayers[timeLayerIndex].setOpacity(0);
+		let timeLayers = generateTimeLayers();
+		timeLayers.forEach((layer: L.TileLayer) => layer.addTo(map));
+		const timeLayerCount = timeLayers.length;
+		let timeLayerIndex = 0;
 
-		timeLayerIndex++;
-		if (timeLayerIndex > (timeLayerCount - 1)) { timeLayerIndex = 0; }
-		timeLayers[timeLayerIndex].setOpacity(ANIMATED_LAYER_OPACITY);
-		
+		function timeLayerTransitionTimer() {
+			setTimeout(() => {
+				timeLayers[timeLayerIndex].setOpacity(0);
+
+				timeLayerIndex++;
+				if (timeLayerIndex > timeLayerCount - 1) {
+					timeLayerIndex = 0;
+				}
+				
+				if (animateInput.checked) {
+					timeLayers[timeLayerIndex].setOpacity(ANIMATED_LAYER_OPACITY);
+					timeLayerTransitionTimer();
+				}
+			}, 333);
+		}
 		timeLayerTransitionTimer();
-
-	}, 333)
+	}
 }
-timeLayerTransitionTimer();
