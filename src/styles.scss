@@ -5,13 +5,30 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-  width: 100%;
-  
-  font-family: courier;
+	width: 100%;
+
+	font-family: courier;
 	font-size: 12px;
 	font-weight: 1000;
 	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
 
+	input,
+	button {
+		background: lightgray;
+		font-size: 14px;
+		background: lightgray;
+	}
+	button {
+		font-weight: 1000;
+	}
+	input {
+		font-weight: 700;
+	}
+	div.horizontal-separator {
+		height: 0;
+		border-top: 1px solid black;
+		margin: 5px -10px 5px -6px;
+	}
 }
 
 div#map {
@@ -23,12 +40,37 @@ div#map {
 div#nexrad-animate {
 	z-index: 400;
 	position: absolute;
-	left: 100px;
-	top: 16px;
-	width: 120px;
+	left: 17px;
+	top: 196px;
+	width: 152px;
 
-	> .nexrad-animate-play-pause {
-		transform: rotate(90deg);
+	> div.horizontal-separator {
+		position: relative;
+		left: 6px;
+	}
+
+	> button#nexrad-animation-play-pause-button {
+		display: none;
+		float: right;
+		position: relative;
+		left: 16px;
+		> div#nexrad-animation-play-pause-button-text {
+			transform: rotate(90deg);
+			-moz-transform: rotate(90deg);
+			-o-transform: rotate(90deg);
+			-webkit-transform: rotate(90deg);
+		}
+	}
+
+	> div#nexrad-animation-timestamp {
+		line-height: 26px;
+		width: 100%;
+		text-align: left;
+	}
+
+	> div#nexrad-animation-time-slider-container > input#nexrad-animation-time-slider {
+		display: none;
+		width: 111px;
 	}
 }
 
@@ -38,37 +80,30 @@ div#view-summary {
 	right: 10px;
 	top: 10px;
 	width: 200px;
-  
-  table > tbody > tr {
-    > td {
-      &:first-child {
-        width: 100px;
-        text-align: left;
-      }
-      &:last-child {
-        width: 75px;
-        text-align: right;
-      }
-    }
-  }
+
+	table > tbody > tr {
+		> td {
+			&:first-child {
+				width: 100px;
+				text-align: left;
+			}
+			&:last-child {
+				width: 75px;
+				text-align: right;
+			}
+		}
+	}
 }
 
 div#go-to-coords {
-  z-index: 400;
-  position: absolute;
-  right: 225px;
-  top: 10px;
+	z-index: 400;
+	position: absolute;
+	right: 225px;
+	top: 10px;
 
-  input {
-    width: 75px;
-    background: lightgray;
-    font-weight: 700;
-  }
-  button {
-    background: lightgray;
-    font-weight: 1000;
-    font-size: 14px;
-  }
+	input {
+		width: 75px;
+	}
 }
 
 div#center {
@@ -85,8 +120,7 @@ div#center {
 
 // leaflet overrides
 .leaflet-container {
-
-  font-family: courier;
+	font-family: courier;
 	font-size: 12px;
 	font-weight: 1000;
 	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
@@ -112,6 +146,9 @@ div#center {
 				background: none;
 				> .leaflet-control-layers-scrollbar {
 					overflow: hidden;
+					> .leaflet-control-layers-separator {
+						border-top: 1px solid black;
+					}
 				}
 			}
 		}

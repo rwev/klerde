@@ -11,19 +11,23 @@
         <div id="map"></div>
         <div id="center">&times;</div>
         <div id="nexrad-animate">
+            <div class="horizontal-separator"></div>
             <input 
                 id="nexrad-animation-toggle" 
                 type="checkbox">
             <span>Animate</span>
-            <span id="nexrad-animation-play-pause">= &#9650; </span>
-            <span id="nexrad-animation-timestamp"></span>
+            <button id="nexrad-animation-play-pause-button">
+                <div id="nexrad-animation-play-pause-button-text">=</div>
+            </button>
+            <div id="nexrad-animation-timestamp"></div>
             <div class="nexrad-animation-time-slider-container">
                 <input 
+                    id="nexrad-animation-time-slider"
                     type="range"
                     min="1"
                     max="100"
                     value="50"
-                    id="nexrad-animation-time-slider">
+                >
             </div>
         </div>
         <div id="go-to-coords">

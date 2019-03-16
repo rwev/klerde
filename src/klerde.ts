@@ -3,7 +3,7 @@ import { MAP_OPTIONS, LAYERS_OPTIONS, SCALE_OPTIONS, ZOOM_OPTIONS } from './opti
 import { OVERLAY_LAYERS } from './layers/overlay';
 import { DEFAULT_BASE_LAYER, ALL_BASE_LAYERS } from './layers/base';
 import { onMapDoubleClick, onMapChange } from './functions/handlers';
-import { generateTimeLayers, ANIMATED_LAYER_OPACITY } from './layers/animated';
+import { generateTimeLayers, ANIMATED_LAYER_OPACITY, TimeLayer } from './layers/animated';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
 document.onreadystatechange = () => map.invalidateSize();
@@ -56,33 +56,71 @@ function goToCoords() {
 let animateInput: HTMLInputElement = document.getElementById('nexrad-animation-toggle') as HTMLInputElement;
 animateInput.onclick = toggleWeatherAnimation;
 
+let animationTimestamp: HTMLSpanElement = document.getElementById('nexrad-animation-timestamp') as HTMLSpanElement;
+let animationPlayPauseButton: HTMLButtonElement = document.getElementById(
+	'nexrad-animation-play-pause-button'
+) as HTMLButtonElement;
+
+let animationSlider: HTMLInputElement = document.getElementById('nexrad-animation-time-slider') as HTMLInputElement;
+
 function toggleWeatherAnimation() {
-	if (animateInput.checked) {
-		for (let layerName in OVERLAY_LAYERS) {
-			const layer = OVERLAY_LAYERS[layerName];
-			layer.removeFrom(map);
-		}
-
-		let timeLayers = generateTimeLayers();
-		timeLayers.forEach((layer: L.TileLayer) => layer.addTo(map));
-		const timeLayerCount = timeLayers.length;
-		let timeLayerIndex = 0;
-
-		function timeLayerTransitionTimer() {
-			setTimeout(() => {
-				timeLayers[timeLayerIndex].setOpacity(0);
-
-				timeLayerIndex++;
-				if (timeLayerIndex > timeLayerCount - 1) {
-					timeLayerIndex = 0;
-				}
-				
-				if (animateInput.checked) {
-					timeLayers[timeLayerIndex].setOpacity(ANIMATED_LAYER_OPACITY);
-					timeLayerTransitionTimer();
-				}
-			}, 333);
-		}
-		timeLayerTransitionTimer();
+	if (!animateInput.checked) {
+		return;
 	}
+	for (let layerName in OVERLAY_LAYERS) {
+		const layer = OVERLAY_LAYERS[layerName];
+		layer.removeFrom(map);
+	}
+
+	animationPlayPauseButton.style.display = 'block';
+	animationTimestamp.style.display = 'block';
+	
+	
+	animationSlider.style.display = 'block';
+
+
+	let timeLayers: TimeLayer[] = generateTimeLayers();
+
+	timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.addTo(map));
+	const timeLayerCount = timeLayers.length;
+	let timeLayerIndex = 0;
+
+	animationSlider.min = '0';
+	animationSlider.max = `${timeLayerCount - 1}`;
+
+	let isPaused = false;
+	
+	animationSlider.onmouseup = () => {
+		timeLayers[timeLayerIndex].tileLayer.setOpacity(0);
+		timeLayers[+animationSlider.value].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
+		isPaused = true;
+	};
+
+	function timeLayerTransitionTimer() {
+		setTimeout(() => {
+
+			if (isPaused) {
+				return;
+			}
+
+			timeLayers[timeLayerIndex].tileLayer.setOpacity(0);
+			
+			timeLayerIndex++;
+			if (timeLayerIndex > timeLayerCount - 1) {
+				timeLayerIndex = 0;
+			}
+
+			if (animateInput.checked) {
+				timeLayers[timeLayerIndex].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
+				animationTimestamp.innerText = timeLayers[timeLayerIndex].timestamp;
+				timeLayerTransitionTimer();
+			} else {
+				animationTimestamp.innerText = '';
+				animationPlayPauseButton.style.display = 'none';
+				animationTimestamp.style.display = 'none';
+				animationSlider.style.display = 'none';
+			}
+		}, 333);
+	}
+	timeLayerTransitionTimer();
 }
