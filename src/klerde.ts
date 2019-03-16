@@ -56,10 +56,14 @@ function goToCoords() {
 let animateInput: HTMLInputElement = document.getElementById('nexrad-animation-toggle') as HTMLInputElement;
 animateInput.onclick = toggleWeatherAnimation;
 
-let animationTimestamp: HTMLSpanElement = document.getElementById('nexrad-animation-timestamp') as HTMLSpanElement;
+let animationTimestamp: HTMLDivElement = document.getElementById('nexrad-animation-timestamp') as HTMLDivElement;
 let animationPlayPauseButton: HTMLButtonElement = document.getElementById(
 	'nexrad-animation-play-pause-button'
 ) as HTMLButtonElement;
+let animationPlayPauseButtonText: HTMLDivElement = document.getElementById(
+	'nexrad-animation-play-pause-button-text'
+) as HTMLDivElement;
+
 
 let animationSlider: HTMLInputElement = document.getElementById('nexrad-animation-time-slider') as HTMLInputElement;
 
@@ -75,9 +79,7 @@ function toggleWeatherAnimation() {
 	animationPlayPauseButton.style.display = 'block';
 	animationTimestamp.style.display = 'block';
 	
-	
 	animationSlider.style.display = 'block';
-
 
 	let timeLayers: TimeLayer[] = generateTimeLayers();
 
@@ -91,10 +93,22 @@ function toggleWeatherAnimation() {
 	let isPaused = false;
 	
 	animationSlider.onmouseup = () => {
-		timeLayers[timeLayerIndex].tileLayer.setOpacity(0);
+		timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
 		timeLayers[+animationSlider.value].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
+		animationPlayPauseButtonText.innerText = '^';
 		isPaused = true;
 	};
+
+	animationPlayPauseButton.onclick = () => {
+		if (isPaused) {
+			animationPlayPauseButtonText.innerText = '='
+			timeLayerTransitionTimer();
+			isPaused = false
+		} else {
+			animationPlayPauseButtonText.innerText = '^';
+			isPaused = true;
+		}
+	}
 
 	function timeLayerTransitionTimer() {
 		setTimeout(() => {
@@ -113,6 +127,7 @@ function toggleWeatherAnimation() {
 			if (animateInput.checked) {
 				timeLayers[timeLayerIndex].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
 				animationTimestamp.innerText = timeLayers[timeLayerIndex].timestamp;
+				animationSlider.value = `${timeLayerIndex}`;
 				timeLayerTransitionTimer();
 			} else {
 				animationTimestamp.innerText = '';
