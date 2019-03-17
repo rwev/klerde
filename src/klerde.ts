@@ -95,6 +95,7 @@ function toggleWeatherAnimation() {
 	animationSlider.onmouseup = () => {
 		timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
 		timeLayers[+animationSlider.value].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
+		animationTimestamp.innerText = timeLayers[+animationSlider.value].timestamp;
 		animationPlayPauseButtonText.innerText = '^';
 		isPaused = true;
 	};
