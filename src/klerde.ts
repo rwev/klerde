@@ -78,7 +78,6 @@ function toggleWeatherAnimation() {
 
 	animationPlayPauseButton.style.display = 'block';
 	animationTimestamp.style.display = 'block';
-	
 	animationSlider.style.display = 'block';
 
 	let timeLayers: TimeLayer[] = generateTimeLayers();

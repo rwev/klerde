@@ -37,6 +37,16 @@ div#map {
 	margin: 0 auto;
 }
 
+div#elevation-profile {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background-color: rgba(51, 170, 51, .1);
+	width: 500px;
+	height: 500px;
+	z-index: 400;
+}
+
 div#nexrad-animate {
 	z-index: 400;
 	position: absolute;
