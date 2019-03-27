@@ -7,6 +7,9 @@ import { updateViewSummary } from '../components/view-summary';
 export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 	let waypoint: L.Marker = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointIcon(e.latlng) }).addTo(this);
 
+	// development
+	addWaypointToRoute(this, waypoint);
+
 	fetchElevation(e.latlng).then((elevation: number) => {
 		waypoint.remove();
 		waypoint = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointIcon(e.latlng, elevation) }).addTo(

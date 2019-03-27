@@ -192,3 +192,11 @@ div#center {
 		}
 	}
 }
+
+.distance-icon {
+	> div.distance-rotation > span.distance {
+		position: relative;
+		// left: -45px; 
+		// top: px // calculated dynamically in distance-icons.ts
+	}
+}
