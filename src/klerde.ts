@@ -4,6 +4,8 @@ import { OVERLAY_LAYERS } from './layers/overlay';
 import { DEFAULT_BASE_LAYER, ALL_BASE_LAYERS } from './layers/base';
 import { onMapDoubleClick, onMapChange } from './functions/handlers';
 import { generateTimeLayers, ANIMATED_LAYER_OPACITY, TimeLayer } from './layers/animated';
+import { addWaypointToRoute } from './functions/route';
+import { WaypointIcon } from './items/waypoint-icons';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
 document.onreadystatechange = () => map.invalidateSize();
@@ -21,8 +23,8 @@ L.control.scale(SCALE_OPTIONS).addTo(map);
 map.zoomControl.remove(); // remove the default
 L.control.zoom(ZOOM_OPTIONS).addTo(map);
 
-// map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
-map.setView(new L.LatLng(40, -98), 5); // Whole US
+map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
+// map.setView(new L.LatLng(40, -98), 5); // Whole US
 // navigator.geolocation.getCurrentPosition((position: Position) => {
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
@@ -64,7 +66,6 @@ let animationPlayPauseButtonText: HTMLDivElement = document.getElementById(
 	'nexrad-animation-play-pause-button-text'
 ) as HTMLDivElement;
 
-
 let animationSlider: HTMLInputElement = document.getElementById('nexrad-animation-time-slider') as HTMLInputElement;
 
 function toggleWeatherAnimation() {
@@ -90,7 +91,7 @@ function toggleWeatherAnimation() {
 	animationSlider.max = `${timeLayerCount - 1}`;
 
 	let isPaused = false;
-	
+
 	animationSlider.onmouseup = () => {
 		timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
 		timeLayers[+animationSlider.value].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
@@ -101,24 +102,23 @@ function toggleWeatherAnimation() {
 
 	animationPlayPauseButton.onclick = () => {
 		if (isPaused) {
-			animationPlayPauseButtonText.innerText = '='
+			animationPlayPauseButtonText.innerText = '=';
 			timeLayerTransitionTimer();
-			isPaused = false
+			isPaused = false;
 		} else {
 			animationPlayPauseButtonText.innerText = '^';
 			isPaused = true;
 		}
-	}
+	};
 
 	function timeLayerTransitionTimer() {
 		setTimeout(() => {
-
 			if (isPaused) {
 				return;
 			}
 
 			timeLayers[timeLayerIndex].tileLayer.setOpacity(0);
-			
+
 			timeLayerIndex++;
 			if (timeLayerIndex > timeLayerCount - 1) {
 				timeLayerIndex = 0;
@@ -139,3 +139,23 @@ function toggleWeatherAnimation() {
 	}
 	timeLayerTransitionTimer();
 }
+
+// FOR DEVELOPMENT
+const testPoints: L.LatLngExpression[] = [
+	[ 43.616667, -116.2 ],
+	[ 43.749, -115.965],
+	[ 43.906, -116.136],
+	[ 43.681, -116.625 ],
+	[43.551, -116.4322],
+];
+
+testPoints.forEach((p: any) => {
+	const marker: L.Marker = 		new L.Marker(p, {
+		icon: new WaypointIcon(new L.LatLng(p[0], p[1]), 0, true)
+	})
+	marker.addTo(map)
+	addWaypointToRoute(
+		map,
+		marker
+	);
+});

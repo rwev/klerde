@@ -5,16 +5,17 @@ import { formatNumber } from '../util/format';
 
 const WaypointIconOptions: L.DivIconOptions = {
 	className: 'waypoint-icon',
-	iconSize: new L.Point(130, 45), // change with .waypoint in styles.css
+	iconSize: new L.Point(130, 45), // change with .waypoint in styles.scss
 	iconAnchor: new L.Point(130 / 2, 45)
 };
 export class WaypointIcon extends L.DivIcon {
 	constructor(coordinates: L.LatLng, elevation?: number, confirm: boolean = false) {
-		let content;
+		
 		const lat = formatNumber(coordinates.lat);
 		const lng = formatNumber(coordinates.lng);
 		const elev = !!elevation ? '' + elevation : '-----';
-
+		
+		let content: string;
 		content = `<span class="waypoint coords">(${lat}, ${lng})</span>`;
 		content += `<span class="waypoint elev">@ ${elev} ft </span>`;
 		content += `<span class="waypoint tri">&#9660;</span>`;

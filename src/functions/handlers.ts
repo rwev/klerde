@@ -1,5 +1,5 @@
 import * as L from 'leaflet';
-import { WaypointIcon, WaypointConfirmIcon, WaypointDeleteIcon } from '../items/icons';
+import { WaypointIcon, WaypointConfirmIcon, WaypointDeleteIcon } from '../items/waypoint-icons';
 import { fetchElevation } from './requests';
 import { addWaypointToRoute, removeWaypointFromRoute } from './route';
 import { updateViewSummary } from '../components/view-summary';
@@ -40,3 +40,4 @@ export function onMapDoubleClick(e: L.LeafletMouseEvent) {
 export function onMapChange(e: L.LeafletEvent) {
 	updateViewSummary(this);
 }
+

@@ -1,5 +1,6 @@
 import * as L from 'leaflet';
 import { POLYLINE_OPTIONS } from "../options/options";
+import { addDistanceMarkers } from './distance';
 
 let routePolyline: L.Polyline = null;
 let waypointLatLngs: L.LatLng[] = [];
@@ -23,5 +24,11 @@ function drawRoute(map: L.Map) {
 	}
 	if (waypointLatLngs.length > 1) {
 		routePolyline = L.polyline(waypointLatLngs, POLYLINE_OPTIONS).addTo(map);
+		addDistanceMarkers(map, waypointLatLngs);
+	
 	}
 }
+
+
+
+
