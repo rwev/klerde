@@ -4,43 +4,41 @@ import { fetchElevation } from './requests';
 import { addWaypointToRoute, removeWaypointFromRoute } from './route';
 import { updateViewSummary } from '../components/view-summary';
 
-export function onMapDoubleClick(e: L.LeafletMouseEvent) {
-	let waypoint: L.Marker = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointIcon(e.latlng) }).addTo(this);
-
-	// development
-	addWaypointToRoute(this, waypoint);
-
-	fetchElevation(e.latlng).then((elevation: number) => {
+export function addWaypointMarker(map: L.Map, latlng: L.LatLng) {
+	let waypoint: L.Marker = L.marker([ latlng.lat, latlng.lng ], { icon: new WaypointIcon(latlng) }).addTo(map);
+	
+	
+	// for development only; add unconfirmed waypoints to route.
+	// avoids dependecies on elevation data to confirm points.
+	addWaypointToRoute(map, waypoint);
+	
+	fetchElevation(latlng).then((elevation: number) => {
 		waypoint.remove();
-		waypoint = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointIcon(e.latlng, elevation) }).addTo(
-			this
+		waypoint = L.marker([ latlng.lat, latlng.lng ], { icon: new WaypointIcon(latlng, elevation) }).addTo(
+			map
 		);
 
 		let waypointConfirm: L.Marker;
 		let waypointDelete: L.Marker;
-		waypointConfirm = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointConfirmIcon() })
-			.addTo(this)
+		waypointConfirm = L.marker([ latlng.lat, latlng.lng ], { icon: new WaypointConfirmIcon() })
+			.addTo(map)
 			.on('click', () => {
 				waypointConfirm.remove();
 				waypoint.remove();
-				waypoint = L.marker([ e.latlng.lat, e.latlng.lng ], {
-					icon: new WaypointIcon(e.latlng, elevation, true)
-				}).addTo(this);
-				addWaypointToRoute(this, waypoint);
+				waypoint = L.marker([ latlng.lat, latlng.lng ], {
+					icon: new WaypointIcon(latlng, elevation, true)
+				}).addTo(map);
+				addWaypointToRoute(map, waypoint);
 			});
 
-		waypointDelete = L.marker([ e.latlng.lat, e.latlng.lng ], { icon: new WaypointDeleteIcon() })
-			.addTo(this)
+		waypointDelete = L.marker([ latlng.lat, latlng.lng ], { icon: new WaypointDeleteIcon() })
+			.addTo(map)
 			.on('click', () => {
 				waypoint.remove();
 				waypointConfirm.remove();
 				waypointDelete.remove();
-				removeWaypointFromRoute(this, waypoint);
+				removeWaypointFromRoute(map, waypoint);
 			});
 	});
-}
-
-export function onMapChange(e: L.LeafletEvent) {
-	updateViewSummary(this);
 }
 

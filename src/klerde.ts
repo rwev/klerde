@@ -2,10 +2,11 @@ import * as L from 'leaflet';
 import { MAP_OPTIONS, LAYERS_OPTIONS, SCALE_OPTIONS, ZOOM_OPTIONS } from './options/options';
 import { OVERLAY_LAYERS } from './layers/overlay';
 import { DEFAULT_BASE_LAYER, ALL_BASE_LAYERS } from './layers/base';
-import { onMapDoubleClick, onMapChange } from './functions/handlers';
+import { addWaypointMarker } from './functions/handlers';
 import { generateTimeLayers, ANIMATED_LAYER_OPACITY, TimeLayer } from './layers/animated';
 import { addWaypointToRoute } from './functions/route';
 import { WaypointIcon } from './items/waypoint-icons';
+import { updateViewSummary } from './components/view-summary';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
 document.onreadystatechange = () => map.invalidateSize();
@@ -29,10 +30,13 @@ map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
 
-map.on('dblclick', onMapDoubleClick, map);
-map.on('resize', onMapChange, map);
-map.on('zoomanim', onMapChange, map);
-map.on('dragend', onMapChange, map);
+map.on('dblclick', (e: L.LeafletMouseEvent) => addWaypointMarker(map, e.latlng), map);
+map.on('resize', updateViewSummary, map);
+map.on('zoomanim',updateViewSummary, map);
+map.on('dragend', updateViewSummary, map);
+
+let dropCoordsButton: HTMLButtonElement = document.getElementById('drop-coords-button') as HTMLButtonElement;
+dropCoordsButton.onclick = () => addWaypointMarker(map, map.getCenter()); 
 
 let latInput: HTMLInputElement = document.getElementById('latitude-input') as HTMLInputElement;
 let lngInput: HTMLInputElement = document.getElementById('longitude-input') as HTMLInputElement;

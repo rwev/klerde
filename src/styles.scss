@@ -16,7 +16,6 @@ body {
 	button {
 		background: lightgray;
 		font-size: 14px;
-		background: lightgray;
 	}
 	button {
 		font-weight: 1000;
@@ -38,7 +37,6 @@ div#map {
 }
 
 div#elevation-profile {
-
 	position: absolute;
 	bottom: 10px;
 	left: 10px;
@@ -113,7 +111,44 @@ div#go-to-coords {
 	top: 10px;
 
 	input {
-		width: 75px;
+		width: 100px;
+	}
+}
+
+div#drop-coords {
+	z-index: 400;
+	position: absolute;
+	right: 490px;
+	top: 10px;
+
+	button#drop-coords-button {
+		width: 29px;
+		height: 20px;
+		span.drop-char {
+			position: absolute;
+			top: 1px;
+			left: 1px;
+			font-size: 10pt;
+			&.x {
+				transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				-o-transform: rotate(90deg);
+				-webkit-transform: rotate(90deg);
+				top: 8px;
+				left: 11px;
+				font-size: 8pt;
+			}
+			&.bar {
+				left: 10.5px;
+				top: 1.5px;
+				height: 13px;
+				overflow: hidden;
+			}
+			&.gt {
+				top: -2px;
+				left: 13px;
+			}
+		}
 	}
 }
 
@@ -196,7 +231,6 @@ div#center {
 .distance-icon {
 	> div.distance-rotation > span.distance {
 		position: relative;
-		// left: -45px; 
-		// top: px // calculated dynamically in distance-icons.ts
+		// top, left calculated dynamically in distance-icons.ts
 	}
 }

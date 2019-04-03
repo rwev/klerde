@@ -34,22 +34,38 @@
 
 
         </div>
+
+        <div id="drop-coords">
+
+            <button
+            id="drop-coords-button"
+            title="Drop waypoint at centered coordinates"
+        >
+                <span class="drop-char x">X</span>
+                <span class="drop-char bar">|</span>
+                <span class="drop-char gt">></span>
+        </button>
+        </div>
         <div id="go-to-coords">
+
             <input 
                 id="latitude-input" 
                 min="-90"
                 max="90"
                 step="any"
                 type="number"
+                placeholder="Latitude"
                 (onchange)>
             <input 
                 id="longitude-input" 
                 min="-180"
                 max="180"
                 step="any"
+                placeholder="Longitude"
                 type="number">
             <button
                 id="go-button"
+                title="Go to coordinates"
                 disabled
             >
                 >

@@ -2,13 +2,13 @@ import * as L from 'leaflet';
 import { formatNumber } from '../util/format';
 import { fetchElevation } from '../functions/requests';
 
-export function updateViewSummary(map: L.Map) {
+export function updateViewSummary() {
 
-    let center: L.LatLng = map.getCenter();
+    let center: L.LatLng = this.getCenter();
     document.getElementById('latitude-view').innerText = formatNumber(center.lat);
     document.getElementById('longitude-view').innerText = formatNumber(center.lng);
 
-    let bounds: L.LatLngBounds = map.getBounds();
+    let bounds: L.LatLngBounds = this.getBounds();
     document.getElementById('northern-bound-view').innerText = formatNumber(bounds.getNorth());
     document.getElementById('southern-bound-view').innerText = formatNumber(bounds.getSouth());
     document.getElementById('eastern-bound-view').innerText = formatNumber(bounds.getEast());
