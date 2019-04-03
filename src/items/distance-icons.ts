@@ -3,8 +3,10 @@ import { formatNumber } from '../util/format';
 
 const DistanceIconOptions: L.DivIconOptions = {
 	className: 'distance-icon',
-	iconSize: new L.Point(145, 15), // change with .distance in styles.scss
-	iconAnchor: new L.Point(0, 0)
+	// change with .distance-icon in styles.scss
+	// fit width of rotated span inside iconSize rectangle
+	iconSize: new L.Point(150, 150),
+	iconAnchor: new L.Point(75, 7.5)
 };
 
 const FEET_PER_METER = 3.28084;
@@ -39,12 +41,6 @@ export class DistanceIcon extends L.DivIcon {
 		} else {
 			angle = 90 - angle;
 		}
-		const posStyle = `
-			top: ${(hasPositiveSlope ? -1 : 1) * Math.abs(angle)}px;
-			left: ${(hasPositiveSlope ? -1 : 1) * (Math.abs(angle)-45)}px;
-			`;
-
-
 		const rotationStyle = `
                         transform: rotate(${angle}deg);
                         -moz-transform: rotate(${angle}deg);
@@ -56,7 +52,7 @@ export class DistanceIcon extends L.DivIcon {
 
 		let content: string;
 
-		content = `<span class="distance" style="${posStyle}">(${distance}, ${bearing}) deg </span>`;
+		content = `<span class="distance">(${distance}, ${bearing}) deg </span>`;
 		// wrap to angle
 		content = `<div class="distance-rotation" style="${rotationStyle}">` + content + `</div>`;
 

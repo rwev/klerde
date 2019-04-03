@@ -229,8 +229,9 @@ div#center {
 }
 
 .distance-icon {
-	> div.distance-rotation > span.distance {
-		position: relative;
-		// top, left calculated dynamically in distance-icons.ts
+	> div.distance-rotation {
+		width: 150px;
+		line-height: 15px;
+		text-align: center;
 	}
 }

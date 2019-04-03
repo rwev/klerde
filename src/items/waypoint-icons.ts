@@ -1,8 +1,6 @@
 import * as L from 'leaflet';
 import { formatNumber } from '../util/format';
 
-
-
 const WaypointIconOptions: L.DivIconOptions = {
 	className: 'waypoint-icon',
 	iconSize: new L.Point(130, 45), // change with .waypoint in styles.scss

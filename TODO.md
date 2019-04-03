@@ -1,6 +1,5 @@
 
-- distance between two points (L.LatLng.distanceTo(L.LatLng))
-    - marker at halfway point
+- calculated bearing between waypoints
 - hide animation controls until weather overlay is checked 
 - refactor / break up klerde.ts
 - OSM geosearch service
