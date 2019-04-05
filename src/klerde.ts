@@ -24,8 +24,8 @@ L.control.scale(SCALE_OPTIONS).addTo(map);
 map.zoomControl.remove(); // remove the default
 L.control.zoom(ZOOM_OPTIONS).addTo(map);
 
-map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
-// map.setView(new L.LatLng(40, -98), 5); // Whole US
+map.setView(new L.LatLng(40, -98), 5); // Whole US
+// map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
 // navigator.geolocation.getCurrentPosition((position: Position) => {
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
@@ -145,21 +145,20 @@ function toggleWeatherAnimation() {
 }
 
 // FOR DEVELOPMENT
-const testPoints: L.LatLngExpression[] = [
-	[ 43.616667, -116.2 ],
-	[ 43.749, -115.965],
-	[ 43.906, -116.136],
-	[ 43.681, -116.625 ],
-	[43.551, -116.4322],
-];
-
-testPoints.forEach((p: any) => {
-	const marker: L.Marker = 		new L.Marker(p, {
-		icon: new WaypointIcon(new L.LatLng(p[0], p[1]), 0, true)
-	})
-	marker.addTo(map)
-	addWaypointToRoute(
-		map,
-		marker
-	);
-});
+// const testPoints: L.LatLngExpression[] = [
+// 	[ 43.616667, -116.2 ],
+// 	[ 43.749, -115.965],
+// 	[ 43.906, -116.136],
+// 	[ 43.681, -116.625 ],
+// 	[43.551, -116.4322],
+// ];
+// testPoints.forEach((p: any) => {
+// 	const marker: L.Marker = 		new L.Marker(p, {
+// 		icon: new WaypointIcon(new L.LatLng(p[0], p[1]), 0, true)
+// 	})
+// 	marker.addTo(map)
+// 	addWaypointToRoute(
+// 		map,
+// 		marker
+// 	);
+// });

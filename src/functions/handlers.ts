@@ -6,12 +6,13 @@ import { updateViewSummary } from '../components/view-summary';
 
 export function addWaypointMarker(map: L.Map, latlng: L.LatLng) {
 	let waypoint: L.Marker = L.marker([ latlng.lat, latlng.lng ], { icon: new WaypointIcon(latlng) }).addTo(map);
-	
-	
-	// for development only; add unconfirmed waypoints to route.
+
+
+	// FOR DEVELOPMENT
+	// add unconfirmed waypoints to route.
 	// avoids dependecies on elevation data to confirm points.
-	addWaypointToRoute(map, waypoint);
-	
+	// addWaypointToRoute(map, waypoint);
+
 	fetchElevation(latlng).then((elevation: number) => {
 		waypoint.remove();
 		waypoint = L.marker([ latlng.lat, latlng.lng ], { icon: new WaypointIcon(latlng, elevation) }).addTo(
