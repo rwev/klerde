@@ -16,10 +16,12 @@
   "private": true,
   "dependencies": {
     "@types/d3": "^5.7.1",
+    "concurrently": "^4.1.0",
     "d3": "^5.9.2",
     "leaflet": "^1.4.0",
     "leaflet-openweathermap": "^1.0.0",
-    "leaflet.nontiledlayer": "^1.0.7"
+    "leaflet.nontiledlayer": "^1.0.7",
+    "watch": "^1.0.2"
   },
   "devDependencies": {
     "@types/leaflet": "^1.4.3",
@@ -31,8 +33,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-scss": "node-sass src/ -o dist/",
+    "start": "npm run compile-all && npm run watch-all",
+    "watch-all": "concurrently -p \"[{name}]\" -n \"SRC,STYLES\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm:watch-ts\" \"npm:watch-scss\"",
+    "watch-ts": "watch \"npm run compile-ts\" src/",
+    "watch-scss": "watch \" npm run compile-scss\" styles/",
+    "compile-scss": "node-sass styles/ -o dist/",
     "compile-ts": "webpack",
-    "build": "npm run compile-scss & npm run compile-ts"
+    "compile-all": "npm run compile-scss & npm run compile-ts"
   }
 }
