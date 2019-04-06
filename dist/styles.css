@@ -1,0 +1,180 @@
+@import url(../node_modules/leaflet/dist/leaflet.css);
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: courier;
+  font-size: 12px;
+  font-weight: 1000;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white; }
+  html input,
+  html button,
+  body input,
+  body button {
+    background: lightgray;
+    font-size: 14px; }
+  html button,
+  body button {
+    font-weight: 1000; }
+  html input,
+  body input {
+    font-weight: 700; }
+  html div.horizontal-separator,
+  body div.horizontal-separator {
+    height: 0;
+    border-top: 1px solid black;
+    margin: 5px -10px 5px -6px; }
+
+div#map {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto; }
+
+div#elevation-profile {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(51, 170, 51, 0.1);
+  width: 500px;
+  height: 500px;
+  z-index: 400; }
+
+div#nexrad-animate {
+  z-index: 400;
+  position: absolute;
+  left: 17px;
+  top: 196px;
+  width: 152px; }
+  div#nexrad-animate > div.horizontal-separator {
+    position: relative;
+    left: 6px; }
+  div#nexrad-animate > button#nexrad-animation-play-pause-button {
+    display: none;
+    float: right;
+    position: relative;
+    left: 16px; }
+    div#nexrad-animate > button#nexrad-animation-play-pause-button > div#nexrad-animation-play-pause-button-text {
+      transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg); }
+  div#nexrad-animate > div#nexrad-animation-timestamp {
+    line-height: 26px;
+    width: 100%;
+    text-align: left; }
+  div#nexrad-animate > div#nexrad-animation-time-slider-container > input#nexrad-animation-time-slider {
+    display: none;
+    width: 111px; }
+
+div#view-summary {
+  z-index: 400;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 200px; }
+  div#view-summary table > tbody > tr > td:first-child {
+    width: 100px;
+    text-align: left; }
+  div#view-summary table > tbody > tr > td:last-child {
+    width: 75px;
+    text-align: right; }
+
+div#go-to-coords {
+  z-index: 400;
+  position: absolute;
+  right: 225px;
+  top: 10px; }
+  div#go-to-coords input {
+    width: 100px; }
+
+div#drop-coords {
+  z-index: 400;
+  position: absolute;
+  right: 490px;
+  top: 10px; }
+  div#drop-coords button#drop-coords-button {
+    width: 29px;
+    height: 20px; }
+    div#drop-coords button#drop-coords-button span.drop-char {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      font-size: 10pt; }
+      div#drop-coords button#drop-coords-button span.drop-char.x {
+        transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        top: 8px;
+        left: 11px;
+        font-size: 8pt; }
+      div#drop-coords button#drop-coords-button span.drop-char.bar {
+        left: 10.5px;
+        top: 1.5px;
+        height: 13px;
+        overflow: hidden; }
+      div#drop-coords button#drop-coords-button span.drop-char.gt {
+        top: -2px;
+        left: 13px; }
+
+div#center {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 11px);
+  z-index: 4000;
+  width: 22px;
+  height: 22px;
+  font-size: 36px;
+  font-weight: 750;
+  line-height: 22px; }
+
+.leaflet-container {
+  font-family: courier;
+  font-size: 12px;
+  font-weight: 1000;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white; }
+  .leaflet-container .leaflet-control-container > .leaflet-bottom.leaflet-right > .leaflet-control-zoom.leaflet-bar.leaflet-control {
+    border: none; }
+    .leaflet-container .leaflet-control-container > .leaflet-bottom.leaflet-right > .leaflet-control-zoom.leaflet-bar.leaflet-control > .leaflet-control-zoom-in,
+    .leaflet-container .leaflet-control-container > .leaflet-bottom.leaflet-right > .leaflet-control-zoom.leaflet-bar.leaflet-control > .leaflet-control-zoom-out {
+      font-size: 18px;
+      border: none;
+      background: none; }
+  .leaflet-container .leaflet-control-container > .leaflet-bottom.leaflet-right > .leaflet-control-attribution.leaflet-control {
+    display: none; }
+  .leaflet-container .leaflet-control-container > .leaflet-top.leaflet-left > .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+    border: none;
+    background: none; }
+    .leaflet-container .leaflet-control-container > .leaflet-top.leaflet-left > .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control > .leaflet-control-layers-scrollbar {
+      overflow: hidden; }
+      .leaflet-container .leaflet-control-container > .leaflet-top.leaflet-left > .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control > .leaflet-control-layers-scrollbar > .leaflet-control-layers-separator {
+        border-top: 1px solid black; }
+
+.waypoint-icon > .action {
+  position: absolute;
+  width: 15px;
+  line-height: 15px;
+  font-size: 16px; }
+
+.waypoint-icon .waypoint-unconfirmed,
+.waypoint-icon > .action {
+  color: gray;
+  text-shadow: none; }
+
+.waypoint-icon .waypoint {
+  position: absolute;
+  width: 130px;
+  line-height: 15px;
+  text-align: center; }
+  .waypoint-icon .waypoint.elev {
+    top: 15px; }
+  .waypoint-icon .waypoint.tri {
+    font-size: 18px;
+    top: 30px; }
+
+.distance-icon > div.distance-rotation {
+  width: 150px;
+  line-height: 15px;
+  text-align: center; }
