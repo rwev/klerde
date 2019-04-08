@@ -25,7 +25,7 @@ function drawRoute(map: L.Map) {
 	if (waypointLatLngs.length > 1) {
 		routePolyline = L.polyline(waypointLatLngs, POLYLINE_OPTIONS).addTo(map);
 		addDistanceMarkers(map, waypointLatLngs);
-	
+
 	}
 }
 

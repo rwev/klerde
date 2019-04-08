@@ -1,4 +1,4 @@
-@import "../node_modules/leaflet/dist/leaflet.css";
+@import "~leaflet/dist/leaflet.css";
 
 html,
 body {
@@ -6,7 +6,7 @@ body {
 	padding: 0;
 	height: 100%;
 	width: 100%;
-
+ 
 	font-family: courier;
 	font-size: 12px;
 	font-weight: 1000;
