@@ -28,14 +28,12 @@ map.setView(new L.LatLng(40, -98), 5); // Whole US
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
 
-
 /// VIEW SUMMARY
 
 map.on('dblclick', (e: L.LeafletMouseEvent) => addWaypointMarker(map, e.latlng), map);
 map.on('resize', updateViewSummary, map);
 map.on('zoomend',updateViewSummary, map);
 map.on('dragend', updateViewSummary, map);
-
 
 /// ZOOM
 
@@ -65,11 +63,21 @@ function updateZoomLevels() {
 updateZoom();
 updateZoomLevels();
 
-
-/// GOTO COORDS
+/// DROP COORDS 
 
 let dropCoordsButton: HTMLButtonElement = document.getElementById('drop-coords-button') as HTMLButtonElement;
 dropCoordsButton.onclick = () => addWaypointMarker(map, map.getCenter()); 
+
+// CENTER LOCATION
+
+let goToLocationButton: HTMLButtonElement = document.getElementById('go-to-location-button') as HTMLButtonElement;
+goToLocationButton.onclick = () => navigator.geolocation.getCurrentPosition((position: Position) => {
+	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
+});; 
+
+
+/// GOTO COORDS
+
 
 let latInput: HTMLInputElement = document.getElementById('latitude-input') as HTMLInputElement;
 let lngInput: HTMLInputElement = document.getElementById('longitude-input') as HTMLInputElement;

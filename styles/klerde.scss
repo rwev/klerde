@@ -56,37 +56,27 @@ div#elevation-profile {
 div#zoom-control {
 	z-index: 400;
 	position: absolute;
-	height: 260px;
+	height: 270px;
 	width: 30px;
 	bottom: 10px;
 	right: 	10px;
 
 
 	> div#zoom-level-text {
-		top: 0px;
 		font-size: 14pt;
-		height: 20px;
-		line-height: 20px;
+		height: 30px;
+		line-height: 30px;
 		text-align: center;
 	}
 
-	> button.zoom-button {
-		&.in {
-			//top: 20px;
-		}
-		&.out {
-			//top: 240px;
-		}
-	}
 	> div#zoom-slider-container {
 		width: 30px;
 		height: 200px;
-		//top: 40px;
 		> input#zoom-slider {
-			position: absolute;
+			position: relative;
 			width: 200px;
 			height: 30px;
-			top: 123px;
+			top: 83px;
 			left: -87px;
 		}
 	}
@@ -155,10 +145,20 @@ div#go-to-coords {
 	}
 }
 
-div#drop-coords {
+div#go-to-location {
 	z-index: 400;
 	position: absolute;
 	right: 490px;
+	top: 10px;
+	> button#go-to-location-button {
+
+	}
+}
+
+div#drop-coords {
+	z-index: 400;
+	position: absolute;
+	right: 525px;
 	top: 10px;
 
 	button#drop-coords-button {

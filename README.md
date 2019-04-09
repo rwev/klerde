@@ -1,5 +1,5 @@
-# Klerde (Klima + Erde) 
-Pure TypeScript application for quick and dirty map measurements useful for outdoor terrain navigation. Relies on public and open sources, including USGS maps and elevation data, Nexrad and NOAA satellite weather, and OSM.
+# Klerde (Klima + Erde) [Demo](https://rwev.github.io/klerde/)
+Pure TypeScript application for quick and dirty map measurements useful for outdoor terrain navigation. Relies on public and open sources, including USGS maps and elevation data, Nexrad and NOAA satellite weather, and OSM. 
 
 ![](animation-waypoints-route.gif)
 

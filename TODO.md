@@ -5,18 +5,14 @@
     - hide view summary - display when layers expanded?
     - collapse layers
     - orientation in the browser?
-- integrate standard icon set
-- goto current location
-- zoom slider w/ zoom level displayed
+- overhaul icons / buttons - integrate standard icon set
+- fix wrong order of layers bug 
 - document build / watch process
+- hide animation controls until weather overlay is checked 
 - fetch elevation requests hosted
 - calculated bearing between waypoints
-- hide animation controls until weather overlay is checked 
-- tick marks on sliders
-- fix wrong order of layers bug 
 - refactor / break up klerde.ts
 - clean up / consolidate styles
-    - rotation
 - OSM geosearch service
 - once confirmed, insert into table list
     - reorderable
