@@ -13,7 +13,7 @@ interface USGSQueryResults {
 
 const UNITS: string = 'Feet';
 const OUTPUT: string = 'json';
-const baseUrl: string = `http://nationalmap.gov/epqs/pqs.php?units=${UNITS}&output=${OUTPUT}`;
+const baseUrl: string = `https://nationalmap.gov/epqs/pqs.php?units=${UNITS}&output=${OUTPUT}`;
 
 export async function fetchElevation(coords: L.LatLng): Promise<number> {
 	const url = baseUrl + `&x=${coords.lng}&y=${coords.lat}`;
