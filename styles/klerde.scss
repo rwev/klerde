@@ -6,7 +6,7 @@ body {
 	padding: 0;
 	height: 100%;
 	width: 100%;
- 
+
 	font-family: courier;
 	font-size: 12px;
 	font-weight: 1000;
@@ -30,6 +30,13 @@ body {
 	}
 }
 
+.rotate-90 {
+	transform: rotate(90deg);
+}
+.rotate-neg-90 {
+	transform: rotate(-90deg);
+}
+
 div#map {
 	height: 100%;
 	width: 100%;
@@ -44,6 +51,55 @@ div#elevation-profile {
 	width: 500px;
 	height: 500px;
 	z-index: 400;
+}
+
+div#zoom-control {
+	z-index: 400;
+	position: absolute;
+	height: 296px;
+	width: 32px;
+	bottom: 0px;
+	right: 	10px;
+
+	> div.zoom-button,
+	div#zoom-level-text {
+		position: absolute;
+		font-size: 14pt;
+		width: 32px;
+		height: 32px;
+		line-height: 32px;
+		text-align: center;
+
+		&.in,
+		&.out {
+			cursor: pointer;
+		}
+		&.in {
+			top: 32px;
+		}
+
+		&.out {
+			top: 264px;
+		}
+	}
+
+	div#zoom-level-text {
+		top: 0px;
+	}
+
+	> div#zoom-slider-container {
+		position: absolute;
+		width: 32px;
+		height: 200px;
+		top: 64px;
+		> input#zoom-slider {
+			width: 200px;
+			height: 32px;
+			top: 84px;
+			left: -86px;
+			position: absolute;
+		}
+	}
 }
 
 div#nexrad-animate {
@@ -63,12 +119,6 @@ div#nexrad-animate {
 		float: right;
 		position: relative;
 		left: 16px;
-		> div#nexrad-animation-play-pause-button-text {
-			transform: rotate(90deg);
-			-moz-transform: rotate(90deg);
-			-o-transform: rotate(90deg);
-			-webkit-transform: rotate(90deg);
-		}
 	}
 
 	> div#nexrad-animation-timestamp {
@@ -130,10 +180,6 @@ div#drop-coords {
 			left: 1px;
 			font-size: 10pt;
 			&.x {
-				transform: rotate(90deg);
-				-moz-transform: rotate(90deg);
-				-o-transform: rotate(90deg);
-				-webkit-transform: rotate(90deg);
 				top: 8px;
 				left: 11px;
 				font-size: 8pt;

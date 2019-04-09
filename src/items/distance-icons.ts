@@ -41,12 +41,7 @@ export class DistanceIcon extends L.DivIcon {
 		} else {
 			angle = 90 - angle;
 		}
-		const rotationStyle = `
-                        transform: rotate(${angle}deg);
-                        -moz-transform: rotate(${angle}deg);
-                        -o-transform: rotate(${angle}deg);
-                        -webkit-transform: rotate(${angle}deg);
-                     `;
+		const rotationStyle = `transform: rotate(${angle}deg);`;
 
 		const bearing: number = 0; // calculate and format
 

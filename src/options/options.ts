@@ -1,19 +1,13 @@
 import * as L from 'leaflet';
 
 export const MAP_OPTIONS: L.MapOptions = {
-  zoomControl: true, // added dynamically
+  zoomControl: false,
   doubleClickZoom: false,
   attributionControl: false,
   dragging: true,
   zoom: 12,
   center: L.latLng(43.606856, -116.214465) // Boise, ID, USA
 };
-
-export const ZOOM_OPTIONS: L.Control.ZoomOptions = {
-  zoomInText: '[+]',
-  zoomOutText: '[-]',
-  position: 'bottomright',
-}
 
 export const SCALE_OPTIONS: L.Control.ScaleOptions = {
   position: 'bottomleft',

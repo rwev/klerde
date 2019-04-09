@@ -1,6 +1,18 @@
-
+- set slider mins and maxes per base layer in base.ts
+- mobile integration
+    - show current location and orientation
+    - record position over time and display history
+    - hide view summary - display when layers expanded?
+    - collapse layers
+    - orientation in the browser?
+- integrate standard icon set
+- goto current location
+- zoom slider w/ zoom level displayed
+- document build / watch process
+- fetch elevation requests hosted
 - calculated bearing between waypoints
 - hide animation controls until weather overlay is checked 
+- tick marks on sliders
 - fix wrong order of layers bug 
 - refactor / break up klerde.ts
 - clean up / consolidate styles
@@ -9,7 +21,4 @@
 - once confirmed, insert into table list
     - reorderable
 - sample elevations between points for profile
-- mobile integration
-    - show current location and orientation
-    - record position over time and display history
 

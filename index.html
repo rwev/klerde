@@ -17,7 +17,7 @@
                 type="checkbox">
             <span>Animate</span>
             <button id="nexrad-animation-play-pause-button">
-                <div id="nexrad-animation-play-pause-button-text">=</div>
+                <div id="nexrad-animation-play-pause-button-text" class="rotate-90">=</div>
             </button>
             <div id="nexrad-animation-timestamp"></div>
             <div class="nexrad-animation-time-slider-container">
@@ -38,13 +38,12 @@
             id="drop-coords-button"
             title="Drop waypoint at centered coordinates"
         >
-                <span class="drop-char x">X</span>
-                <span class="drop-char bar">|</span>
-                <span class="drop-char gt">></span>
+        <span class="drop-char gt">></span>
+        <span class="drop-char bar">|</span>
+        <span class="drop-char x rotate-90">X</span>
         </button>
         </div>
         <div id="go-to-coords">
-
             <input 
                 id="latitude-input" 
                 min="-90"
@@ -67,6 +66,21 @@
             >
                 >
             </button>
+        </div>
+        <div id="zoom-control">
+            <div id="zoom-level-text"></div>
+            <div id="zoom-in-button"  class="zoom-button in" title="Zoom in">[+]</div>
+            <div id="zoom-slider-container">
+                <input 
+                id="zoom-slider"
+                class="rotate-neg-90"
+                type="range"
+                min="4"
+                max="20"
+                value="50"
+                >
+            </div>
+            <div id="zoom-out-button" class="zoom-button out" title="Zoom out">[-]</div>
         </div>
         <div id="view-summary">
             <table>

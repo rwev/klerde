@@ -1,5 +1,5 @@
 import * as L from 'leaflet';
-import { MAP_OPTIONS, LAYERS_OPTIONS, SCALE_OPTIONS, ZOOM_OPTIONS } from './options/options';
+import { MAP_OPTIONS, LAYERS_OPTIONS, SCALE_OPTIONS } from './options/options';
 import { OVERLAY_LAYERS } from './layers/overlay';
 import { DEFAULT_BASE_LAYER, ALL_BASE_LAYERS } from './layers/base';
 import { addWaypointMarker } from './functions/handlers';
@@ -21,8 +21,6 @@ L.control
 DEFAULT_BASE_LAYER.addTo(map);
 
 L.control.scale(SCALE_OPTIONS).addTo(map);
-map.zoomControl.remove(); // remove the default
-L.control.zoom(ZOOM_OPTIONS).addTo(map);
 
 map.setView(new L.LatLng(40, -98), 5); // Whole US
 // map.setView(new L.LatLng(43.616667, -116.2), 11); // Boise, ID
@@ -30,10 +28,45 @@ map.setView(new L.LatLng(40, -98), 5); // Whole US
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
 
+
+/// VIEW SUMMARY
+
 map.on('dblclick', (e: L.LeafletMouseEvent) => addWaypointMarker(map, e.latlng), map);
 map.on('resize', updateViewSummary, map);
-map.on('zoomanim',updateViewSummary, map);
+map.on('zoomend',updateViewSummary, map);
 map.on('dragend', updateViewSummary, map);
+
+
+/// ZOOM
+
+let zoomInButton: HTMLButtonElement = document.getElementById('zoom-in-button') as HTMLButtonElement;
+let zoomOutButton: HTMLButtonElement = document.getElementById('zoom-out-button') as HTMLButtonElement;
+let zoomLevel: HTMLDivElement = document.getElementById('zoom-level-text') as HTMLDivElement;
+zoomInButton.onclick = () => map.zoomIn();
+zoomOutButton.onclick = () => map.zoomOut();
+
+let zoomSlider: HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
+zoomSlider.onmouseup = () => {
+	map.setZoom(+zoomSlider.value);
+	zoomLevel.innerText = `${zoomSlider.value}`;
+}
+
+map.on('zoomend',updateZoom, map);
+map.on('zoomlevelchange', updateZoomLevels, map);
+function updateZoom() {
+	zoomLevel.innerText = `${map.getZoom()}`;
+	zoomSlider.value = `${map.getZoom()}`;
+}
+function updateZoomLevels() {
+	zoomSlider.min = `${map.getMinZoom()}`;
+	zoomSlider.max = `${map.getMaxZoom()}`;
+}
+
+updateZoom();
+updateZoomLevels();
+
+
+/// GOTO COORDS
 
 let dropCoordsButton: HTMLButtonElement = document.getElementById('drop-coords-button') as HTMLButtonElement;
 dropCoordsButton.onclick = () => addWaypointMarker(map, map.getCenter()); 
@@ -58,6 +91,9 @@ function processCoordinateEntry() {
 function goToCoords() {
 	map.setView(new L.LatLng(+latInput.value, +lngInput.value), map.getZoom());
 }
+
+
+/// ANIMATION
 
 let animateInput: HTMLInputElement = document.getElementById('nexrad-animation-toggle') as HTMLInputElement;
 animateInput.onclick = toggleWeatherAnimation;
