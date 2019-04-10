@@ -22,6 +22,9 @@
 		}
 		> .leaflet-top.leaflet-left {
 			> .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+				position: relative;
+				top: 36px;
+				left: 12px;
 				border: none;
 				background: none;
 				> .leaflet-control-layers-scrollbar {
@@ -34,4 +37,3 @@
 		}
 	}
 }
-

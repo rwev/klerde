@@ -1,10 +1,12 @@
-- make custom layers control
+- make mobile-ready custom layers control
     - material icon to match
     - label BASE vs OVERLAY
     - only one overlay at a time
     - manage layer z-indexs to solve below bug
     - integrate view-summary
     - instead of hover, click to show/hide
+- make mobile-ready navigation accordion (?)
+    - go-to-coords, drop-coords, go-to-location
 - set slider mins and maxes per base layer in base.ts
 - remove all waypoints / clear map button
 - mobile integration

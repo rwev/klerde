@@ -7,7 +7,7 @@ import { generateTimeLayers, ANIMATED_LAYER_OPACITY, TimeLayer } from './layers/
 import { addWaypointToRoute } from './functions/route';
 import { WaypointIcon } from './items/waypoint-icons';
 import { updateViewSummary } from './components/view-summary';
-import { makeResponsive } from './util/responsive';
+import { makeResponsive, hideHTMLElement, showHTMLElement } from './util/responsive';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
 document.onreadystatechange = () => map.invalidateSize();
@@ -67,6 +67,28 @@ function updateZoomLevels() {
 updateZoom();
 updateZoomLevels();
 
+/// LAYER CONTROLlayers-control-panel-weather-animation
+let layersControlPanelViewSummary = document.getElementById('layers-control-panel-view-summary') as HTMLDivElement;
+let layersControlWeatherAnimation = document.getElementById('layers-control-panel-weather-animation') as HTMLDivElement;
+let leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
+let isShowingLayersControlPanel: boolean = false;
+hideLayersControlPanel();
+
+function hideLayersControlPanel() {
+	hideHTMLElement(layersControlPanelViewSummary);
+	hideHTMLElement(leafletDefaultLayersControl);
+	hideHTMLElement(layersControlWeatherAnimation);
+}
+function showLayersControlPanel() {
+	showHTMLElement(layersControlPanelViewSummary);
+	showHTMLElement(leafletDefaultLayersControl);
+	showHTMLElement(layersControlWeatherAnimation);
+}
+
+let layersControlToggleButton: HTMLButtonElement = document.getElementById('layers-control-toggle') as HTMLButtonElement;
+layersControlToggleButton.onclick = () => { isShowingLayersControlPanel ? hideLayersControlPanel() : showLayersControlPanel(); isShowingLayersControlPanel = !isShowingLayersControlPanel;}
+
+
 /// DROP COORDS 
 
 let dropCoordsButton: HTMLButtonElement = document.getElementById('drop-coords-button') as HTMLButtonElement;
@@ -104,25 +126,30 @@ function goToCoords() {
 	map.setView(new L.LatLng(+latInput.value, +lngInput.value), map.getZoom());
 }
 
-
 /// ANIMATION
 
-let animateInput: HTMLInputElement = document.getElementById('nexrad-animation-toggle') as HTMLInputElement;
+let animateInput: HTMLInputElement = document.getElementById('weather-animation-toggle') as HTMLInputElement;
+animateInput.checked = false;
 animateInput.onclick = toggleWeatherAnimation;
 
-let animationTimestamp: HTMLDivElement = document.getElementById('nexrad-animation-timestamp') as HTMLDivElement;
+
+let animationTimestamp: HTMLDivElement = document.getElementById('weather-animation-timestamp') as HTMLDivElement;
 let animationPlayPauseButton: HTMLButtonElement = document.getElementById(
-	'nexrad-animation-play-pause-button'
+	'weather-animation-play-pause-button'
 ) as HTMLButtonElement;
 let animationPlayPauseButtonText: HTMLDivElement = document.getElementById(
-	'nexrad-animation-play-pause-button-text'
+	'weather-animation-play-pause-button-text'
 ) as HTMLDivElement;
+let animationSlider: HTMLInputElement = document.getElementById('weather-animation-time-slider') as HTMLInputElement;
 
+
+hideHTMLElement(animationPlayPauseButton);
+hideHTMLElement(animationTimestamp);
+hideHTMLElement(animationSlider);
 
 const PLAY_HTML = "<i class='material-icons'>play_arrow</i>";
 const PAUSE_HTML = "<i class='material-icons'>pause</i>";
 
-let animationSlider: HTMLInputElement = document.getElementById('nexrad-animation-time-slider') as HTMLInputElement;
 
 function toggleWeatherAnimation() {
 	if (!animateInput.checked) {
@@ -133,9 +160,9 @@ function toggleWeatherAnimation() {
 		layer.removeFrom(map);
 	}
 
-	animationPlayPauseButton.style.display = 'block';
-	animationTimestamp.style.display = 'block';
-	animationSlider.style.display = 'block';
+	showHTMLElement(animationPlayPauseButton);
+	showHTMLElement(animationTimestamp);
+	showHTMLElement(animationSlider);
 
 	let timeLayers: TimeLayer[] = generateTimeLayers();
 
@@ -148,6 +175,7 @@ function toggleWeatherAnimation() {
 
 	let isPaused = false;
 	animationPlayPauseButtonText.innerHTML = PAUSE_HTML;
+
 
 	animationSlider.onmouseup = () => {
 		timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
@@ -187,10 +215,9 @@ function toggleWeatherAnimation() {
 				animationSlider.value = `${timeLayerIndex}`;
 				timeLayerTransitionTimer();
 			} else {
-				animationTimestamp.innerText = '';
-				animationPlayPauseButton.style.display = 'none';
-				animationTimestamp.style.display = 'none';
-				animationSlider.style.display = 'none';
+				hideHTMLElement(animationPlayPauseButton);
+				hideHTMLElement(animationTimestamp);
+				hideHTMLElement(animationSlider);
 			}
 		}, 333);
 	}

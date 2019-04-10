@@ -1,7 +1,5 @@
-/// RESPONSIVE
-
 function hideElementById(id: string) {
-    document.getElementById(id).hidden = true;
+    hideHTMLElement(document.getElementById(id))
 }
 
 export function makeResponsive() {
@@ -9,8 +7,14 @@ export function makeResponsive() {
     let supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
     if (supportsTouch) {
-        ['zoom-control', 'nexrad-animation-time-slider']
+        ['zoom-control', 'weather-animation-time-slider']
         .forEach((id: string) => hideElementById(id))
     } 
 }
  
+export function hideHTMLElement(el: HTMLElement) {
+    el.style.display = 'none';
+}
+export function showHTMLElement(el: HTMLElement) {
+    el.style.display = 'block';
+}
