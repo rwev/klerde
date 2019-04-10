@@ -1,11 +1,18 @@
+- make custom layers control
+    - material icon to match
+    - label BASE vs OVERLAY
+    - only one overlay at a time
+    - manage layer z-indexs to solve below bug
+    - integrate view-summary
+    - instead of hover, click to show/hide
 - set slider mins and maxes per base layer in base.ts
+- remove all waypoints / clear map button
 - mobile integration
     - show current location and orientation
     - record position over time and display history
     - hide view summary - display when layers expanded?
     - collapse layers
     - orientation in the browser?
-- overhaul icons / buttons - integrate standard icon set
 - fix wrong order of layers bug 
 - document build / watch process
 - hide animation controls until weather overlay is checked 
@@ -16,4 +23,5 @@
 - once confirmed, insert into table list
     - reorderable
 - sample elevations between points for profile
+
 

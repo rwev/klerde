@@ -118,6 +118,10 @@ let animationPlayPauseButtonText: HTMLDivElement = document.getElementById(
 	'nexrad-animation-play-pause-button-text'
 ) as HTMLDivElement;
 
+
+const PLAY_HTML = "<i class='material-icons'>play_arrow</i>";
+const PAUSE_HTML = "<i class='material-icons'>pause</i>";
+
 let animationSlider: HTMLInputElement = document.getElementById('nexrad-animation-time-slider') as HTMLInputElement;
 
 function toggleWeatherAnimation() {
@@ -143,22 +147,23 @@ function toggleWeatherAnimation() {
 	animationSlider.max = `${timeLayerCount - 1}`;
 
 	let isPaused = false;
+	animationPlayPauseButtonText.innerHTML = PAUSE_HTML;
 
 	animationSlider.onmouseup = () => {
 		timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
 		timeLayers[+animationSlider.value].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
 		animationTimestamp.innerText = timeLayers[+animationSlider.value].timestamp;
-		animationPlayPauseButtonText.innerText = '^';
+		animationPlayPauseButtonText.innerHTML = PLAY_HTML;
 		isPaused = true;
 	};
 
 	animationPlayPauseButton.onclick = () => {
 		if (isPaused) {
-			animationPlayPauseButtonText.innerText = '=';
+			animationPlayPauseButtonText.innerHTML = PAUSE_HTML;
 			timeLayerTransitionTimer();
 			isPaused = false;
 		} else {
-			animationPlayPauseButtonText.innerText = '^';
+			animationPlayPauseButtonText.innerHTML = PLAY_HTML;
 			isPaused = true;
 		}
 	};
