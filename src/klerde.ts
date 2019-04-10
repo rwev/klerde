@@ -7,6 +7,7 @@ import { generateTimeLayers, ANIMATED_LAYER_OPACITY, TimeLayer } from './layers/
 import { addWaypointToRoute } from './functions/route';
 import { WaypointIcon } from './items/waypoint-icons';
 import { updateViewSummary } from './components/view-summary';
+import { makeResponsive } from './util/responsive';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
 document.onreadystatechange = () => map.invalidateSize();
@@ -28,6 +29,8 @@ map.setView(new L.LatLng(40, -98), 5); // Whole US
 // 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 // });
 
+makeResponsive();
+
 /// VIEW SUMMARY
 
 map.on('dblclick', (e: L.LeafletMouseEvent) => addWaypointMarker(map, e.latlng), map);
@@ -48,6 +51,7 @@ zoomSlider.onmouseup = () => {
 	map.setZoom(+zoomSlider.value);
 	zoomLevel.innerText = `${zoomSlider.value}`;
 }
+
 
 map.on('zoomend',updateZoom, map);
 map.on('zoomlevelchange', updateZoomLevels, map);
@@ -206,3 +210,5 @@ function toggleWeatherAnimation() {
 // 		marker
 // 	);
 // });
+
+
