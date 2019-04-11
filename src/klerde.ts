@@ -47,7 +47,7 @@ zoomInButton.onclick = () => map.zoomIn();
 zoomOutButton.onclick = () => map.zoomOut();
 
 let zoomSlider: HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
-zoomSlider.onmouseup = () => {
+zoomSlider.oninput = () => {
 	map.setZoom(+zoomSlider.value);
 	zoomLevel.innerText = `${zoomSlider.value}`;
 }
@@ -170,6 +170,7 @@ function toggleWeatherAnimation() {
 	showHTMLElement(animationSlider);
 	
 	timeLayers = generateTimeLayers();
+	timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
 	timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.addTo(map));
 	const timeLayerCount = timeLayers.length;
 	let timeLayerIndex = 0;
