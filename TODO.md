@@ -1,10 +1,7 @@
+- don't play weather radar animation until all layers finished loading 
 - make mobile-ready custom layers control
-    - material icon to match
     - label BASE vs OVERLAY
     - only one overlay at a time
-    - manage layer z-indexs to solve below bug
-    - integrate view-summary
-    - instead of hover, click to show/hide
 - make mobile-ready navigation accordion (?)
     - go-to-coords, drop-coords, go-to-location
 - set slider mins and maxes per base layer in base.ts
@@ -12,12 +9,9 @@
 - mobile integration
     - show current location and orientation
     - record position over time and display history
-    - hide view summary - display when layers expanded?
     - collapse layers
     - orientation in the browser?
-- fix wrong order of layers bug 
 - document build / watch process
-- hide animation controls until weather overlay is checked 
 - calculated bearing between waypoints
 - refactor / break up klerde.ts
 - clean up / consolidate styles

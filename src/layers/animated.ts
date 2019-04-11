@@ -1,5 +1,5 @@
 import * as L from 'leaflet';
-import { NEXRAD_URL, NEXRAD_LAYER } from './overlay';
+import { NEXRAD_URL, NEXRAD_LAYER, DEFAULT_OVERLAYER_LAYER_OPTIONS as DEFAULT_OVERLAY_LAYER_OPTIONS } from './overlay';
 
 export const ANIMATED_LAYER_OPACITY = 0.575;
 export interface TimeLayer { timestamp: string; tileLayer: L.TileLayer };
@@ -25,9 +25,7 @@ export function generateTimeLayers(): Array<TimeLayer>
 		const layerRequest = NEXRAD_LAYER + (!!timeDiffMins ? '-m' + timeDiffMins + 'm' : '');
 		const layer: L.TileLayer = L.tileLayer.wms(NEXRAD_URL, {
 			layers: layerRequest,
-			format: 'image/png',
-			transparent: true,
-			opacity:  0
+			...DEFAULT_OVERLAY_LAYER_OPTIONS
 		});
 
 		const timeString = new Date(currentTime.valueOf() - timeDiffMins * 60 * 1000).toLocaleTimeString();

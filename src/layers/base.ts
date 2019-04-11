@@ -1,6 +1,8 @@
  import * as L from 'leaflet';
 
-const DEFAULT_BASE_LAYER_OPTIONS: L.TileLayerOptions = { minZoom: 2, maxZoom: 20 };
+export const DEFAULT_BASE_ZINDEX = 100;
+export const DEFAULT_OVERLAY_ZINDEX = 200;
+const DEFAULT_BASE_LAYER_OPTIONS: L.TileLayerOptions = { minZoom: 2, maxZoom: 20, zIndex: 100 };
 
 // OpenStreetMap
 var osmStandard: L.TileLayer = L.tileLayer(
@@ -8,7 +10,7 @@ var osmStandard: L.TileLayer = L.tileLayer(
     {
         ...DEFAULT_BASE_LAYER_OPTIONS,
         //minZoom: 2,
-        //maxZoom: 16
+        //maxZoom: 16,
     }
 );
 
