@@ -61,37 +61,40 @@
             </tbody>
         </table>
     </div>
-    <div id="layers-control-panel-weather-animation">
+    <div id="layers-control-panel-weather-radar">
         <div class="horizontal-separator"></div>
-        <input id="weather-animation-toggle"
+        <input id="weather-radar-toggle"
                type="checkbox">
-        <span>Weather Animation</span>
-        <button id="weather-animation-play-pause-button">
-            <div id="weather-animation-play-pause-button-text">
+        <span>Weather Radar</span>
+        <button id="weather-radar-play-pause-button">
+            <div id="weather-radar-play-pause-button-text">
             </div>
         </button>
-        <div id="weather-animation-timestamp"></div>
-        <div id="weather-animation-time-slider-container">
-            <input id="weather-animation-time-slider"
+        <div id="weather-radar-timestamp"></div>
+        <div id="weather-radar-time-slider-container">
+            <input id="weather-radar-time-slider"
                    type="range"
                    min="1"
                    max="100"
                    value="50">
         </div>
     </div>
-    <div id="drop-coords" hidden> 
+    <div id="drop-coords"
+         hidden>
         <button id="drop-coords-button"
                 title="Drop waypoint at centered coordinates">
             <i class='material-icons'>pin_drop</i>
         </button>
     </div>
-    <div id="go-to-location" hidden>
+    <div id="go-to-location"
+         hidden>
         <button id="go-to-location-button"
                 title="Center map at current location">
             <i class='material-icons'>my_location</i>
         </button>
-    </div>
-    <div id="go-to-coords" hidden>
+    </div>    
+    <div id="go-to-coords"
+         hidden>
         <input id="latitude-input"
                min="-90"
                max="90"
@@ -133,4 +136,5 @@
 <script src="dist/klerde.js"></script>
 <link rel="stylesheet"
       href="dist/klerde.css" />
+
 </html>

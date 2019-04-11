@@ -67,9 +67,9 @@ function updateZoomLevels() {
 updateZoom();
 updateZoomLevels();
 
-/// LAYER CONTROLlayers-control-panel-weather-animation
+/// LAYER CONTROLlayers-control-panel-weather-radar
 let layersControlPanelViewSummary = document.getElementById('layers-control-panel-view-summary') as HTMLDivElement;
-let layersControlWeatherAnimation = document.getElementById('layers-control-panel-weather-animation') as HTMLDivElement;
+let layersControlWeatherAnimation = document.getElementById('layers-control-panel-weather-radar') as HTMLDivElement;
 let leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
 let isShowingLayersControlPanel: boolean = false;
 hideLayersControlPanel();
@@ -126,21 +126,21 @@ function goToCoords() {
 	map.setView(new L.LatLng(+latInput.value, +lngInput.value), map.getZoom());
 }
 
-/// ANIMATION
+/// WEATHER RADAR
 
-let animateInput: HTMLInputElement = document.getElementById('weather-animation-toggle') as HTMLInputElement;
+let animateInput: HTMLInputElement = document.getElementById('weather-radar-toggle') as HTMLInputElement;
 animateInput.checked = false;
 animateInput.onclick = toggleWeatherAnimation;
 
 
-let animationTimestamp: HTMLDivElement = document.getElementById('weather-animation-timestamp') as HTMLDivElement;
+let animationTimestamp: HTMLDivElement = document.getElementById('weather-radar-timestamp') as HTMLDivElement;
 let animationPlayPauseButton: HTMLButtonElement = document.getElementById(
-	'weather-animation-play-pause-button'
+	'weather-radar-play-pause-button'
 ) as HTMLButtonElement;
 let animationPlayPauseButtonText: HTMLDivElement = document.getElementById(
-	'weather-animation-play-pause-button-text'
+	'weather-radar-play-pause-button-text'
 ) as HTMLDivElement;
-let animationSlider: HTMLInputElement = document.getElementById('weather-animation-time-slider') as HTMLInputElement;
+let animationSlider: HTMLInputElement = document.getElementById('weather-radar-time-slider') as HTMLInputElement;
 
 
 hideHTMLElement(animationPlayPauseButton);
@@ -151,21 +151,25 @@ const PLAY_HTML = "<i class='material-icons'>play_arrow</i>";
 const PAUSE_HTML = "<i class='material-icons'>pause</i>";
 
 
+let timeLayers: TimeLayer[] = null;
 function toggleWeatherAnimation() {
+
 	if (!animateInput.checked) {
+		if (timeLayers) {
+			timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.removeFrom(map));
+		} 
 		return;
 	}
 	for (let layerName in OVERLAY_LAYERS) {
 		const layer = OVERLAY_LAYERS[layerName];
 		layer.removeFrom(map);
 	}
-
+	
 	showHTMLElement(animationPlayPauseButton);
 	showHTMLElement(animationTimestamp);
 	showHTMLElement(animationSlider);
-
-	let timeLayers: TimeLayer[] = generateTimeLayers();
-
+	
+	timeLayers = generateTimeLayers();
 	timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.addTo(map));
 	const timeLayerCount = timeLayers.length;
 	let timeLayerIndex = 0;
@@ -176,8 +180,8 @@ function toggleWeatherAnimation() {
 	let isPaused = false;
 	animationPlayPauseButtonText.innerHTML = PAUSE_HTML;
 
-
-	animationSlider.onmouseup = () => {
+	animationSlider.oninput = () => {
+		timeLayerIndex = +animationSlider.value;
 		timeLayers.forEach((timeLayer: TimeLayer) => timeLayer.tileLayer.setOpacity(0));
 		timeLayers[+animationSlider.value].tileLayer.setOpacity(ANIMATED_LAYER_OPACITY);
 		animationTimestamp.innerText = timeLayers[+animationSlider.value].timestamp;
@@ -202,6 +206,7 @@ function toggleWeatherAnimation() {
 				return;
 			}
 
+			
 			timeLayers[timeLayerIndex].tileLayer.setOpacity(0);
 
 			timeLayerIndex++;
@@ -219,7 +224,7 @@ function toggleWeatherAnimation() {
 				hideHTMLElement(animationTimestamp);
 				hideHTMLElement(animationSlider);
 			}
-		}, 333);
+		}, 750);
 	}
 	timeLayerTransitionTimer();
 }

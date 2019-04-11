@@ -7,7 +7,7 @@ export function makeResponsive() {
     let supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
     if (supportsTouch) {
-        ['zoom-control', 'weather-animation-time-slider']
+        ['zoom-control', 'weather-radar-time-slider']
         .forEach((id: string) => hideElementById(id))
     } 
 }

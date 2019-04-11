@@ -77,7 +77,7 @@ div#zoom-control {
 	}
 }
 
-div#layers-control-panel-weather-animation {
+div#layers-control-panel-weather-radar {
 	position: absolute;
 	top: 232px;
 	left: 28px;
@@ -88,18 +88,18 @@ div#layers-control-panel-weather-animation {
 		width: 170px;
 	}
 
-	> button#weather-animation-play-pause-button {
+	> button#weather-radar-play-pause-button {
 		float: right;
 		position: relative;
 		left: 14px;
 		top: 6px;
 	}
-	> div#weather-animation-timestamp {
+	> div#weather-radar-timestamp {
 		line-height: 26px;
 		width: 100%;
 		text-align: left;
 	}
-	> div#weather-animation-time-slider-container > input#weather-animation-time-slider {
+	> div#weather-radar-time-slider-container > input#weather-radar-time-slider {
 		width: 111px;
 	}
 }
