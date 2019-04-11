@@ -25,7 +25,7 @@ var osmHumanitarian: L.TileLayer = L.tileLayer(
 
 // USGS
 var usgsTopo: L.TileLayer = L.tileLayer(
-    'http://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', 
+    'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', 
     {
         ...DEFAULT_BASE_LAYER_OPTIONS,
         //minZoom: 3,
@@ -33,7 +33,7 @@ var usgsTopo: L.TileLayer = L.tileLayer(
     }
 );
 var usgsImagery: L.TileLayer = L.tileLayer(
-    'http://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
+    'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', 
     {
         ...DEFAULT_BASE_LAYER_OPTIONS,
         //minZoom:
@@ -41,7 +41,7 @@ var usgsImagery: L.TileLayer = L.tileLayer(
     }
 );
 var usgsImageryTopo: L.TileLayer = L.tileLayer(
-    'http://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', 
+    'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', 
     {
         ...DEFAULT_BASE_LAYER_OPTIONS,
         //minZoom:
