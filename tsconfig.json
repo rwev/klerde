@@ -7,17 +7,16 @@
     "target": "es6",
     "allowJs": true,
     "sourceMap": true,
-    "outDir": "dist/",
+    "outDir": "www/dist/",
     "lib": [ 
       "es2016",
       "dom"
      ]
   },
   "include": [
-    "src/**/*"
+    "www/src/**/*"
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
   ]
 }

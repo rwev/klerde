@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-	entry: [ './src/klerde.ts', './styles/klerde.scss' ],
+	entry: [ './www/src/klerde.ts', './www/styles/klerde.scss' ],
 	mode: 'development',
     devtool: 'inline-source-map',
     watchOptions: {
@@ -30,7 +30,7 @@ module.exports = {
 	},
 	output: {
 		filename: 'klerde.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'www/dist')
 	},
 	plugins: [
 		new MiniCssExtractPlugin({

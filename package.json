@@ -1,9 +1,11 @@
 {
   "name": "klerde",
+  "displayName": "Klerde",
   "version": "0.0.0",
   "description": "",
   "author": "rwev",
   "license": "MIT",
+  "main": "dist/klerde.js",
   "bugs": {
     "url": "https://github.com/rwev/klerde/issues"
   },
@@ -14,15 +16,18 @@
   },
   "private": true,
   "dependencies": {
+    "cordova-android": "^8.0.0",
+    "cordova-browser": "^6.0.0",
+    "cordova-electron": "^1.0.2",
     "d3": "^5.9.2",
     "leaflet": "^1.4.0",
     "leaflet-openweathermap": "^1.0.0",
     "leaflet.nontiledlayer": "^1.0.7"
   },
   "devDependencies": {
-    "@types/d3": "^5.7.1",
+    "@types/d3": "^5.7.2",
     "@types/leaflet": "^1.4.3",
-    "concurrently": "^4.1.0",
+    "cordova-plugin-whitelist": "^1.3.3",
     "css-loader": "^2.1.1",
     "material-design-icons": "^3.0.1",
     "mini-css-extract-plugin": "^0.5.0",
@@ -30,14 +35,28 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3333",
+    "typescript": "^3.4.3",
     "url-loader": "^1.1.2",
-    "watch": "^1.0.2",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
   },
   "scripts": {
     "compile": "webpack",
-    "watch": "webpack --watch --info-verbosity verbose"
+    "watch": "webpack --watch --info-verbosity verbose",
+    "electron": "cordova run electron --nobuild",
+    "browser": "cordova run browser --nobuild"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android",
+      "electron",
+      "browser"
+    ]
   }
 }
