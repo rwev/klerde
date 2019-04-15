@@ -8,37 +8,37 @@ declare module 'leaflet' {
     namespace OWM {
         
         interface Clouds extends L.TileLayer {} 
-        function clouds(options?): Clouds;
+        function clouds(options?: any): Clouds;
 
         interface CloudsClassic extends L.TileLayer {} 
-        function cloudsClassic(options?): CloudsClassic;
+        function cloudsClassic(options?: any): CloudsClassic;
 
         interface Precipitation extends L.TileLayer {} 
-        function precipitation(options?): Precipitation;
+        function precipitation(options?: any): Precipitation;
 
         interface PrecipitationClassic extends L.TileLayer {} 
-        function precipitationClassic(options?): PrecipitationClassic;
+        function precipitationClassic(options?: any): PrecipitationClassic;
 
         interface Rain extends L.TileLayer {} 
-        function rain(options?): Rain;
+        function rain(options?: any): Rain;
 
         interface RainClassic extends L.TileLayer {} 
-        function rainClassic(options?): RainClassic;
+        function rainClassic(options?: any): RainClassic;
 
         interface Snow extends L.TileLayer {} 
-        function snow(options?): Snow;
+        function snow(options?: any): Snow;
 
         interface Pressure extends L.TileLayer {} 
-        function pressure(options?): Pressure;
+        function pressure(options?: any): Pressure;
 
         interface PressureContour extends L.TileLayer {} 
-        function pressureContour(options?): PressureContour;
+        function pressureContour(options?: any): PressureContour;
 
         interface Temperature extends L.TileLayer {} 
-        function temperature(options?): Temperature;
+        function temperature(options?: any): Temperature;
 
         interface Wind extends L.TileLayer {} 
-        function wind(options?): Wind;
+        function wind(options?: any): Wind;
 
     }
 }

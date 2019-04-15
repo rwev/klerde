@@ -1,3 +1,4 @@
+- remove openweathermap
 - don't play weather radar animation until all layers finished loading 
 - make mobile-ready custom layers control
     - label BASE vs OVERLAY
