@@ -1,0 +1,9 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Klerde",
+  "short_name": "Klerde",
+  "version": "io.cordova.klerde",
+  "icons": [],
+  "start_url": "index.html"
+}

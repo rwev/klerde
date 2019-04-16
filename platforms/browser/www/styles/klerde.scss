@@ -1,0 +1,192 @@
+@import "~leaflet/dist/leaflet.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "leaflet.scss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+
+  font-family: courier;
+  font-size: 12px;
+  font-weight: 1000;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+
+  input {
+    font-size: 24px; // to match material defaults
+    background-color: rgba(200, 200, 200, 0.5);
+  }
+  button {
+    > i.material-icons {
+      // vertically align material icons
+      position: relative;
+      top: 3px;
+    }
+  }
+  button {
+    font-weight: 1000;
+  }
+  input {
+    font-weight: 700;
+  }
+  div.horizontal-separator {
+    height: 0;
+    border-top: 1px solid black;
+    margin: 5px -10px 5px -6px;
+  }
+}
+
+div#map {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 0;
+}
+
+div#center {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 11px);
+}
+
+// LAYER CONTROL
+
+button#layers-control-toggle {
+  position: absolute;
+  top: 12.5px;
+  left: 15px;
+}
+
+div#layers-control-panel {
+  position: absolute;
+  top: 225px;
+  left: 29px;
+  > div.horizontal-separator {
+    width: 185px;
+  }
+  > div#layers-control-weather-radar {
+    height: 85px;
+    width: 210px;
+    > button#weather-radar-play-pause-button {
+      float: right;
+      position: relative;
+      left: 14px;
+      top: 6px;
+    }
+    > div#weather-radar-timestamp {
+      line-height: 26px;
+      width: 100%;
+      text-align: left;
+    }
+    > div#weather-radar-time-slider-container > input#weather-radar-time-slider {
+      width: 111px;
+    }
+  }
+
+  > div#layers-control-view-summary {
+    table > tbody > tr {
+      > td {
+        &:first-child {
+          width: 100px;
+          text-align: left;
+        }
+        &:last-child {
+          width: 75px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+// ZOOM CONTROL
+
+div#zoom-control {
+  position: absolute;
+  bottom: 12px;
+  right: 18px;
+  height: 295px;
+  width: 44px;
+  > div#zoom-level-text {
+    font-size: 17pt;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+  }
+  > div#zoom-slider-container {
+    height: 200px;
+    width: 44px;
+    > input#zoom-slider {
+      position: relative;
+      top: 83px;
+      left: -72px;
+      height: 30px;
+      width: 191px;
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+/// NAV CONTROL
+
+button#nav-control-toggle {
+  position: absolute;
+  bottom: 27.5px;
+  left: 15px;
+}
+div#nav-control-panel {
+  position: absolute;
+  bottom: 74px;
+  left: 15px;
+  width: 24px;
+  > button#nav-control-go-to-location-button,
+  > button#nav-control-drop-coords-button,
+  > div#nav-control-go-to-coords {
+    margin-top: 7.5px;
+  }
+  > div#nav-control-go-to-coords {
+    min-width: 280px;
+    input {
+      width: 100px;
+    }
+  }
+}
+
+// FEATURE CLASSES
+
+.waypoint-icon {
+  > .action {
+    position: absolute;
+    width: 15px;
+    line-height: 15px;
+    font-size: 16px;
+  }
+  .waypoint-unconfirmed,
+  > .action {
+    color: gray;
+    text-shadow: none;
+  }
+  .waypoint {
+    position: absolute;
+    width: 130px;
+    line-height: 15px;
+    text-align: center;
+    &.elev {
+      top: 15px;
+    }
+    &.tri {
+      font-size: 18px;
+      top: 30px;
+    }
+  }
+}
+
+.distance-icon {
+  > div.distance-rotation {
+    width: 150px;
+    line-height: 15px;
+    text-align: center;
+  }
+}

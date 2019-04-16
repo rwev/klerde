@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Klerde</title>
+        <meta name="viewport"
+            content="initial-scale=1, width=device-width, viewport-fit=cover">
+    </head>
+
+    <body>
+        <div id="map"></div>
+        <div id="center">
+            <i class='material-icons'>close</i></div>
+
+        <!-- LAYERS CONTROL -->
+
+        <button id="layers-control-toggle">
+            <i class='material-icons'>layers</i>
+        </button>
+
+        <div id="layers-control-panel" style="display: none">
+            <div class="horizontal-separator"></div>
+            <div id="layers-control-weather-radar">
+                <input id="weather-radar-toggle"
+                    type="checkbox">
+                <span>Weather Radar</span>
+                <button id="weather-radar-play-pause-button">
+                    <div id="weather-radar-play-pause-button-text">
+                    </div>
+                </button>
+                <div id="weather-radar-timestamp"></div>
+                <div id="weather-radar-time-slider-container">
+                    <input id="weather-radar-time-slider"
+                        type="range"
+                        min="1"
+                        max="100"
+                        value="50">
+                </div>
+            </div>
+            <div class="horizontal-separator"></div>
+            <div id="layers-control-view-summary">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Latitude</td>
+                            <td id="latitude-view"></td>
+                        </tr>
+                        <tr>
+                            <td>Longitude</td>
+                            <td id="longitude-view"></td>
+                        </tr>
+                        <tr>
+                            <td>Elevation</td>
+                            <td id="elevation-view"></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td>Northern Bound</td>
+                            <td id="northern-bound-view"></td>
+                        </tr>
+                        <tr>
+                            <td>Southern Bound</td>
+                            <td id="southern-bound-view"></td>
+                        </tr>
+                        <tr>
+                            <td>Eastern Bound</td>
+                            <td id="eastern-bound-view"></td>
+                        </tr>
+                        <tr>
+                            <td>Western Bound</td>
+                            <td id="western-bound-view"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- NAV CONTROL -->
+
+        <button id="nav-control-toggle">
+            <i class='material-icons'>navigation</i>
+        </button>
+
+        <div id="nav-control-panel" style="display: none">
+            <button id="nav-control-drop-coords-button"
+                title="Drop waypoint at centered coordinates">
+                <i class='material-icons'>pin_drop</i>
+            </button>
+            <button id="nav-control-go-to-location-button"
+                title="Center map at current location">
+                <i class='material-icons'>my_location</i>
+            </button>
+            <div id="nav-control-go-to-coords">
+                <input id="latitude-input"
+                    min="-90"
+                    max="90"
+                    step="any"
+                    type="number"
+                    placeholder="Latitude"
+                    (onchange)>
+                <input id="longitude-input"
+                    min="-180"
+                    max="180"
+                    step="any"
+                    placeholder="Longitude"
+                    type="number">
+                <button id="go-button"
+                    title="Go to coordinates"
+                    disabled> <i class='material-icons'>arrow_forward</i>
+                </button>
+            </div>
+        </div>
+
+        <!-- ZOOM CONTROL -->
+
+        <div id="zoom-control">
+            <div id="zoom-level-text"></div>
+            <button id="zoom-in-button"
+                class="zoom-button in"
+                title="Zoom in"><i class='material-icons'>zoom_in</i></button>
+            <div id="zoom-slider-container">
+                <input id="zoom-slider"
+                    type="range"
+                    min="4"
+                    max="20"
+                    value="50">
+            </div>
+            <button id="zoom-out-button"
+                class="zoom-button out"
+                title="Zoom
+                out">
+                <i class='material-icons'>zoom_out</i>
+            </button>
+        </div>
+
+    </body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet"
+        href="dist/klerde.css" />
+
+</html>
