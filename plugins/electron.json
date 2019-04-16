@@ -1,0 +1,24 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.cordova.klerde"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "io.cordova.klerde"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "io.cordova.klerde"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "io.cordova.klerde"
+    }
+  },
+  "dependent_plugins": {}
+}
