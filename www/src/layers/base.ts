@@ -1,4 +1,5 @@
- import * as L from 'leaflet';
+import * as L from 'leaflet';
+import './leaflet-tilelayer-cordova';
 
 export const DEFAULT_BASE_ZINDEX = 100;
 export const DEFAULT_OVERLAY_ZINDEX = 200;
@@ -27,7 +28,7 @@ var osmHumanitarian: L.TileLayer = L.tileLayerCordova(
         //maxZoom: 19
     },
     successCallback
-);
+); 
 
 // USGS
 var usgsTopo: L.TileLayer = L.tileLayerCordova(

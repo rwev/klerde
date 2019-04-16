@@ -67,10 +67,11 @@ function updateZoomLevels() {
 updateZoom();
 updateZoomLevels();
 
-/// LAYER CONTROLlayers-control-panel-weather-radar
+/// LAYER CONTROL
 let layersControlPanelViewSummary = document.getElementById('layers-control-panel-view-summary') as HTMLDivElement;
 let layersControlWeatherAnimation = document.getElementById('layers-control-panel-weather-radar') as HTMLDivElement;
 let leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
+ 
 let isShowingLayersControlPanel: boolean = false;
 hideLayersControlPanel();
 
@@ -89,14 +90,32 @@ let layersControlToggleButton: HTMLButtonElement = document.getElementById('laye
 layersControlToggleButton.onclick = () => { isShowingLayersControlPanel ? hideLayersControlPanel() : showLayersControlPanel(); isShowingLayersControlPanel = !isShowingLayersControlPanel;}
 
 
+/// NAV CONTROL
+
+let navControlPanel = document.getElementById('nav-control-panel') as HTMLDivElement;
+
+let isShowingNavControlPanel: boolean = false;
+hideNavControlPanel();
+
+function hideNavControlPanel() {
+	hideHTMLElement(navControlPanel);
+}
+function showNavControlPanel() {
+	showHTMLElement(navControlPanel);
+}
+
+let navControlToggleButton: HTMLButtonElement = document.getElementById('nav-control-toggle') as HTMLButtonElement;
+navControlToggleButton.onclick = () => { isShowingNavControlPanel ? hideNavControlPanel() : showNavControlPanel(); isShowingNavControlPanel = !isShowingNavControlPanel;}
+
+
 /// DROP COORDS 
 
-let dropCoordsButton: HTMLButtonElement = document.getElementById('drop-coords-button') as HTMLButtonElement;
+let dropCoordsButton: HTMLButtonElement = document.getElementById('nav-control-drop-coords-button') as HTMLButtonElement;
 dropCoordsButton.onclick = () => addWaypointMarker(map, map.getCenter()); 
 
 // CENTER LOCATION
 
-let goToLocationButton: HTMLButtonElement = document.getElementById('go-to-location-button') as HTMLButtonElement;
+let goToLocationButton: HTMLButtonElement = document.getElementById('nav-control-go-to-location-button') as HTMLButtonElement;
 goToLocationButton.onclick = () => navigator.geolocation.getCurrentPosition((position: Position) => {
 	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), map.getZoom());
 });; 

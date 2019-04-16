@@ -45,7 +45,7 @@ div#map {
 	z-index: 0;
 }
 
-div#layers-control {
+button#layers-control-toggle {
 	position: absolute;
 	top: 12.5px;
 	left: 15px;
@@ -121,7 +121,7 @@ div#layers-control-panel-view-summary {
 	}
 }
 
-div#go-to-coords {
+div#nav-control-go-to-coords {
 	position: absolute;
 	top: 10px;
 	right: 225px;
@@ -130,13 +130,13 @@ div#go-to-coords {
 	}
 }
 
-div#go-to-location {
+div#nav-control-go-to-location {
 	position: absolute;
 	right: 490px;
 	top: 10px;
 }
 
-div#drop-coords {
+div#nav-control-drop-coords {
 	position: absolute;
 	right: 540px;
 	top: 10px;

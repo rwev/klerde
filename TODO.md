@@ -4,7 +4,7 @@
     - label BASE vs OVERLAY
     - only one overlay at a time
 - make mobile-ready navigation accordion (?)
-    - go-to-coords, drop-coords, go-to-location
+    - nav-control-go-to-coords, nav-control-drop-coords, nav-control-go-to-location
 - set slider mins and maxes per base layer in base.ts
 - remove all waypoints / clear map button
 - mobile integration
