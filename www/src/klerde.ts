@@ -68,27 +68,24 @@ updateZoom();
 updateZoomLevels();
 
 /// LAYER CONTROL
-let layersControlPanelViewSummary = document.getElementById('layers-control-panel-view-summary') as HTMLDivElement;
-let layersControlWeatherAnimation = document.getElementById('layers-control-panel-weather-radar') as HTMLDivElement;
+
+let layersControlPanel = document.getElementById('layers-control-panel') as HTMLDivElement;
 let leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
  
 let isShowingLayersControlPanel: boolean = false;
 hideLayersControlPanel();
 
 function hideLayersControlPanel() {
-	hideHTMLElement(layersControlPanelViewSummary);
+	hideHTMLElement(layersControlPanel);
 	hideHTMLElement(leafletDefaultLayersControl);
-	hideHTMLElement(layersControlWeatherAnimation);
 }
 function showLayersControlPanel() {
-	showHTMLElement(layersControlPanelViewSummary);
+	showHTMLElement(layersControlPanel);
 	showHTMLElement(leafletDefaultLayersControl);
-	showHTMLElement(layersControlWeatherAnimation);
 }
 
 let layersControlToggleButton: HTMLButtonElement = document.getElementById('layers-control-toggle') as HTMLButtonElement;
 layersControlToggleButton.onclick = () => { isShowingLayersControlPanel ? hideLayersControlPanel() : showLayersControlPanel(); isShowingLayersControlPanel = !isShowingLayersControlPanel;}
-
 
 /// NAV CONTROL
 
