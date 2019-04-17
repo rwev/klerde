@@ -15,6 +15,7 @@ div.leaflet-container {
 				background: none;
 				> section.leaflet-control-layers-list {
 					overflow: hidden;
+					//display: none;
 					> div.leaflet-control-layers-base {
 						margin-top: 20px;
 					}
