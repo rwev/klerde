@@ -15,6 +15,12 @@ div.leaflet-container {
 				background: none;
 				> section.leaflet-control-layers-list {
 					overflow: hidden;
+					> div.leaflet-control-layers-base {
+						margin-top: 20px;
+					}
+					> div.leaflet-control-layers-overlays {
+						margin-top: 20px;
+					}
 					> div.leaflet-control-layers-separator {
 						display: none;
 					}
