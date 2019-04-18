@@ -2,11 +2,13 @@ import * as L from 'leaflet';
 import { DistanceIcon } from '../items/distance-icons';
 let distanceMarkers: L.Marker[] = [];
 
+export function clearDistanceMarkers() {
+    distanceMarkers.forEach((marker: L.Marker) => marker.remove());
+}
+
 export function addDistanceMarkers(map: L.Map, waypointLatLngs: L.LatLng[]) {
 
-    distanceMarkers.forEach((marker: L.Marker) => marker.remove());
-    distanceMarkers = []; // empty
-
+    clearDistanceMarkers();
     for (let i = 0; i < waypointLatLngs.length - 1; i++){
         
         const startCoord: L.LatLng = waypointLatLngs[i];

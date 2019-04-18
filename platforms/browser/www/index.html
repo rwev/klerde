@@ -20,7 +20,8 @@
         </button>
 
         <div id="layers-control-panel" style="display: none">
-            <div class="horizontal-separator"></div>
+            <div id="layers-label-base">BASE MAP LAYERS</div>
+            <div id="layers-label-overlay">OVERLAYS</div>
             <div id="layers-control-weather-radar">
                 <input id="weather-radar-toggle"
                     type="checkbox">
@@ -122,7 +123,7 @@
 
         <!-- ZOOM CONTROL -->
 
-        <div id="zoom-control">
+        <div id="zoom-control" style="display: none">
             <div id="zoom-level-text"></div>
             <button id="zoom-in-button"
                 class="zoom-button in"

@@ -11,7 +11,7 @@ export class WaypointIcon extends L.DivIcon {
 		
 		const lat = formatNumber(coordinates.lat);
 		const lng = formatNumber(coordinates.lng);
-		const elev = !!elevation ? '' + elevation : '-----';
+		const elev = (!!elevation && +elevation > -9999) ? '' + elevation : (+elevation < -9999 ) ? '?' : '-----';
 		
 		let content: string;
 		content = `<span class="waypoint coords">(${lat}, ${lng})</span>`;

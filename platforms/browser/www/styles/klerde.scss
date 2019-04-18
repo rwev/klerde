@@ -62,13 +62,26 @@ button#layers-control-toggle {
 div#layers-control-panel {
   position: absolute;
   top: 225px;
-  left: 29px;
+  left: 27.5px;
+
+  > div#layers-label-base, 
+  > div#layers-label-overlay {
+	position: relative;
+  }
+  > div#layers-label-base {
+	bottom: 167.5px;
+  }
+  > div#layers-label-overlay {
+	bottom: 42.5px;
+  }
+
   > div.horizontal-separator {
-    width: 185px;
+    width: 200px;
   }
   > div#layers-control-weather-radar {
     height: 85px;
-    width: 210px;
+	width: 210px;
+	margin-top: 7.5px;
     > button#weather-radar-play-pause-button {
       float: right;
       position: relative;

@@ -10,7 +10,9 @@ import { updateViewSummary } from './components/view-summary';
 import { makeResponsive, hideHTMLElement, showHTMLElement } from './util/responsive';
 
 var map: L.Map = L.map('map', MAP_OPTIONS);
-document.onreadystatechange = () => map.invalidateSize();
+document.onreadystatechange = () => {
+	map.invalidateSize();
+} 
 
 L.control
 	.layers(
@@ -30,6 +32,8 @@ map.setView(new L.LatLng(40, -98), 5); // Whole US
 // });
 
 makeResponsive();
+
+
 
 /// VIEW SUMMARY
 
@@ -66,44 +70,6 @@ function updateZoomLevels() {
 
 updateZoom();
 updateZoomLevels();
-
-/// LAYER CONTROL
-
-let layersControlPanel = document.getElementById('layers-control-panel') as HTMLDivElement;
-let leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
- 
-let isShowingLayersControlPanel: boolean = false;
-hideLayersControlPanel();
-
-function hideLayersControlPanel() {
-	hideHTMLElement(layersControlPanel);
-	hideHTMLElement(leafletDefaultLayersControl);
-}
-function showLayersControlPanel() {
-	showHTMLElement(layersControlPanel);
-	showHTMLElement(leafletDefaultLayersControl);
-}
-
-let layersControlToggleButton: HTMLButtonElement = document.getElementById('layers-control-toggle') as HTMLButtonElement;
-layersControlToggleButton.onclick = () => { isShowingLayersControlPanel ? hideLayersControlPanel() : showLayersControlPanel(); isShowingLayersControlPanel = !isShowingLayersControlPanel;}
-
-/// NAV CONTROL
-
-let navControlPanel = document.getElementById('nav-control-panel') as HTMLDivElement;
-
-let isShowingNavControlPanel: boolean = false;
-hideNavControlPanel();
-
-function hideNavControlPanel() {
-	hideHTMLElement(navControlPanel);
-}
-function showNavControlPanel() {
-	showHTMLElement(navControlPanel);
-}
-
-let navControlToggleButton: HTMLButtonElement = document.getElementById('nav-control-toggle') as HTMLButtonElement;
-navControlToggleButton.onclick = () => { isShowingNavControlPanel ? hideNavControlPanel() : showNavControlPanel(); isShowingNavControlPanel = !isShowingNavControlPanel;}
-
 
 /// DROP COORDS 
 
@@ -264,5 +230,4 @@ function toggleWeatherAnimation() {
 // 		marker
 // 	);
 // });
-
 

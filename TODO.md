@@ -1,7 +1,6 @@
 - fix zoom level number display, updates incorrectly timed with anmation
 - add units throughout 
 - OSM geosearch service in nav controls
-- remove openweathermap
 - don't play weather radar animation until all layers finished loading 
 - make mobile-ready navigation accordion (?)
     - nav-control-go-to-coords, nav-control-drop-coords, nav-control-go-to-location
