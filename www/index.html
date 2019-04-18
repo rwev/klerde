@@ -92,14 +92,22 @@
         </button>
 
         <div id="nav-control-panel" style="display: none">
-            <button id="nav-control-drop-coords-button"
-                title="Drop waypoint at centered coordinates">
-                <i class='material-icons'>pin_drop</i>
-            </button>
-            <button id="nav-control-go-to-location-button"
-                title="Center map at current location">
-                <i class='material-icons'>my_location</i>
-            </button>
+            <div class="nav-control">
+                <button id="nav-control-drop-coords-button"
+                    title="Drop waypoint at centered coordinates">
+                    <i class='material-icons'>pin_drop</i>
+                </button>
+                <div class="nav-control-label"><span>Drop Waypoint</span></div>
+            </div>
+
+            <div class="nav-control">
+                <button id="nav-control-go-to-location-button"
+                    title="Go to current location">
+                    <i class='material-icons'>my_location</i>
+                </button>
+                <div class="nav-control-label"><span>Go to Location</span></div>
+            </div>
+
             <div id="nav-control-go-to-coords">
                 <input id="latitude-input"
                     min="-90"

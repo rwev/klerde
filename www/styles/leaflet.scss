@@ -15,10 +15,11 @@ div.leaflet-container {
 				background: none;
 				> section.leaflet-control-layers-list {
 					overflow: hidden;
-					//display: none;
-					> div.leaflet-control-layers-base {
-						margin-top: 20px;
+					span {
+						position: relative;
+						bottom: 2.5px;
 					}
+					> div.leaflet-control-layers-base, 
 					> div.leaflet-control-layers-overlays {
 						margin-top: 20px;
 					}

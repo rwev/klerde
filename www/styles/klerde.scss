@@ -14,10 +14,21 @@ body {
   font-weight: 1000;
   text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
 
-  input {
-    font-size: 24px; // to match material defaults
+  input[type="number"] {
+    // fit next to material icon buttons
     background-color: rgba(200, 200, 200, 0.5);
+    font-size: 14px;
+    height: 30px;
+    position: relative;
+    bottom: 4px;
   }
+
+  input[type="checkbox"] + span {
+    // labels aligned with 
+    position: relative;
+    bottom: 2.5px;
+  }
+
   button {
     > i.material-icons {
       // vertically align material icons
@@ -146,23 +157,37 @@ div#zoom-control {
 
 button#nav-control-toggle {
   position: absolute;
-  bottom: 27.5px;
+  bottom: 12.5px;
   left: 15px;
 }
 div#nav-control-panel {
   position: absolute;
-  bottom: 74px;
+
+  bottom: 12.5px;
+  
   left: 15px;
+  
   width: 24px;
-  > button#nav-control-go-to-location-button,
-  > button#nav-control-drop-coords-button,
-  > div#nav-control-go-to-coords {
+
+  > div.nav-control {
     margin-top: 7.5px;
+    width: 160px;
+
+    > div.nav-control-label {
+      float: right;
+      width: 100px;
+      line-height: 36px;
+    }
   }
+
   > div#nav-control-go-to-coords {
+    position: relative;
+    left: 60px;
+    height: 36px;
+    margin-top: 7.5px;
     min-width: 280px;
     input {
-      width: 100px;
+      width: 95px;
     }
   }
 }

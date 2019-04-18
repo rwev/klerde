@@ -10,7 +10,7 @@ export const MAP_OPTIONS: L.MapOptions = {
 };
 
 export const SCALE_OPTIONS: L.Control.ScaleOptions = {
-  position: 'bottomleft',
+  position: 'topright',
   imperial: true,
   metric: false,
 }
