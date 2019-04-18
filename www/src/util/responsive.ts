@@ -21,55 +21,70 @@ function showDesktopElements() {
 
 /// LAYER CONTROL
 
+let isShowingLayersControlPanel: boolean;
+let layersControlPanel: HTMLDivElement;
+let leafletDefaultLayersControl: HTMLElement;
+
+function hideLayersControlPanel() {
+    hideHTMLElement(layersControlPanel);
+    hideHTMLElement(leafletDefaultLayersControl);
+    isShowingLayersControlPanel = false;
+}
+function showLayersControlPanel() {
+    showHTMLElement(layersControlPanel);
+    showHTMLElement(leafletDefaultLayersControl);
+    isShowingLayersControlPanel = true;
+}
+
 function setupLayerToggle(supportsTouch: boolean) {
 
-    let isShowingLayersControlPanel: boolean;
-    let layersControlPanel = document.getElementById('layers-control-panel') as HTMLDivElement;
-    let leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
-    let layersControlToggleButton: HTMLButtonElement = document.getElementById('layers-control-toggle') as HTMLButtonElement;
-    layersControlToggleButton.onclick = () => { isShowingLayersControlPanel ? hideLayersControlPanel() : showLayersControlPanel(); }
+    isShowingLayersControlPanel = false;
+    layersControlPanel = document.getElementById('layers-control-panel') as HTMLDivElement;
+    leafletDefaultLayersControl = document.getElementsByClassName('leaflet-control-layers-list')[0] as HTMLElement;
     
-    function hideLayersControlPanel() {
-        hideHTMLElement(layersControlPanel);
-        hideHTMLElement(leafletDefaultLayersControl);
-        isShowingLayersControlPanel = false;
-    }
-    function showLayersControlPanel() {
-        showHTMLElement(layersControlPanel);
-        showHTMLElement(leafletDefaultLayersControl);
-        isShowingLayersControlPanel = true;
+    let layersControlToggleButton: HTMLButtonElement = document.getElementById('layers-control-toggle') as HTMLButtonElement;
+    layersControlToggleButton.onclick = () => {
+        if (isShowingLayersControlPanel) {
+            hideLayersControlPanel();
+        } else {
+            if (supportsTouch) {
+                hideNavControlPanel();
+            }
+            showLayersControlPanel();
+        }
     }
 
-    if (supportsTouch) {
-        hideLayersControlPanel();
-    } else {
-        showLayersControlPanel();
-    }
 }
 
 /// NAV CONTROL
 
+let isShowingNavControlPanel: boolean;
+let navControlPanel: HTMLDivElement;
+    
+function hideNavControlPanel() {
+    hideHTMLElement(navControlPanel);
+    isShowingNavControlPanel = false;
+}
+function showNavControlPanel() {
+    showHTMLElement(navControlPanel);
+    isShowingNavControlPanel = true;
+}
 
 function setupNavToggle(supportsTouch: boolean) {
 
-    let isShowingNavControlPanel: boolean;
-    let navControlPanel = document.getElementById('nav-control-panel') as HTMLDivElement;
-    let navControlToggleButton: HTMLButtonElement = document.getElementById('nav-control-toggle') as HTMLButtonElement;
-    navControlToggleButton.onclick = () => { isShowingNavControlPanel ? hideNavControlPanel() : showNavControlPanel();}
+    isShowingNavControlPanel = false;
+    navControlPanel = document.getElementById('nav-control-panel') as HTMLDivElement;
     
-    function hideNavControlPanel() {
-        hideHTMLElement(navControlPanel);
-        isShowingNavControlPanel = false;
-    }
-    function showNavControlPanel() {
-        showHTMLElement(navControlPanel);
-        isShowingNavControlPanel = true;
-    }
-
-    if (supportsTouch) {
-        hideNavControlPanel();
-    } else {
-        showNavControlPanel();
+    let navControlToggleButton: HTMLButtonElement = document.getElementById('nav-control-toggle') as HTMLButtonElement;
+    navControlToggleButton.onclick = () => {
+        if (isShowingNavControlPanel) {
+            hideNavControlPanel();
+        } else {
+            if (supportsTouch) {
+                hideLayersControlPanel();
+            }
+            showNavControlPanel();
+        }
     }
 }
 
@@ -83,8 +98,12 @@ export function makeResponsive() {
 
     if (supportsTouch) {
         hideDesktopElements();
+        hideLayersControlPanel();
+        hideNavControlPanel();
     } else {
         showDesktopElements();
+        showLayersControlPanel();
+        showNavControlPanel();
     } 
 }
  

@@ -1,8 +1,8 @@
+- fix zoom level number display, updates incorrectly timed with anmation
+- add units throughout 
+- OSM geosearch service in nav controls
 - remove openweathermap
 - don't play weather radar animation until all layers finished loading 
-- make mobile-ready custom layers control
-    - label BASE vs OVERLAY
-    - only one overlay at a time
 - make mobile-ready navigation accordion (?)
     - nav-control-go-to-coords, nav-control-drop-coords, nav-control-go-to-location
 - set slider mins and maxes per base layer in base.ts
@@ -16,9 +16,6 @@
 - calculated bearing between waypoints
 - refactor / break up klerde.ts
 - clean up / consolidate styles
-- OSM geosearch service
 - once confirmed, insert into table list
     - reorderable
 - sample elevations between points for profile
-
-
