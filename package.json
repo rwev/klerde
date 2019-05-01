@@ -48,6 +48,7 @@
     "compile": "webpack",
     "watch": "webpack --watch --info-verbosity verbose",
     "electron": "cordova run electron --nobuild",
+    "android": "cordova run android --nobuild",
     "browser": "cordova run browser --nobuild"
   },
   "keywords": [
@@ -61,9 +62,9 @@
       "cordova-plugin-file-transfer": {}
     },
     "platforms": [
-      "android",
       "electron",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

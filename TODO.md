@@ -9,7 +9,6 @@
 - mobile integration
     - show current location and orientation
     - record position over time and display history
-    - collapse layers
     - orientation in the browser?
 - document build / watch process
 - calculated bearing between waypoints

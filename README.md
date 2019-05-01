@@ -22,6 +22,8 @@ Global installations
 $ sudo npm i -g cordova
 ```
 
-
+### For Android 
+1. Install Java ([Linux](https://www.java.com/en/download/help/linux_x64_install.xml#download)) 
+2. 
 
 

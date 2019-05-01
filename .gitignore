@@ -1,1 +1,8 @@
-/node_modules
+/node_modules/
+/plugins/
+/platforms/
+/net-export/
+/hooks/
+/v8-compile-cache-0/
+/adb.0.log
+/npm-debug.log
