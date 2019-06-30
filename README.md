@@ -22,6 +22,9 @@ This project is a progressive webapp, simultaneously functional on desktop, mobi
 Global installations
 ```shell
 $ sudo npm i -g cordova
+# add platforms to run
+$ cordova platform add browser
+$ cordova platform add android
 ```
 
 ### For Android 
